@@ -8,15 +8,15 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class QrPage implements OnInit {
 
-  constructor() { }
+  acceptDisabled = true;
 
-  ngOnInit() {
-  }
+  constructor() { }
+  ngOnInit() { }
 
   scan() {
     BarcodeScanner.scan().then((barcodeData) => {
       // Success! Barcode data is here
-      console.log('cenas');
+      this.acceptDisabled = false;
     }, (err) => {
       // An error occurred
       console.log('error');

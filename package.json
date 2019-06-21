@@ -7,7 +7,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "build:android": "ionic cordova build android",
+    "build:ios": "ionic cordova build ios",
+    "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -26,6 +28,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.1.0",
     "cordova-android": "8.0.0",
+    "cordova-ios": "5.0.1",
     "core-js": "^2.5.4",
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "rxjs": "~6.5.1",
@@ -78,7 +81,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
