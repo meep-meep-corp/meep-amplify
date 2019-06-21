@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import awsconfig from '../../aws-exports';
+import {AmplifyService} from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  title = 'amplify-angular-app';
+  url = 'https://console.aws.amazon.com/pinpoint/home/?region='
+    + awsconfig.aws_project_region + '#/apps/'
+    + awsconfig.aws_mobile_analytics_app_id + '/analytics/events';
+  eventsSent = 0;
+  analyticsEventSent = false;
 
-  constructor() {}
+
+  constructor(private amplifyService: AmplifyService) {
+  }
+
+  handleAnalyticsClick() {
+    this.amplifyService.analytics().record('AWS Amplify Tutorial Event')
+      .then((evt) => {
+        ++this.eventsSent;
+        this.analyticsEventSent = true;
+      });
+  }
 
 }
