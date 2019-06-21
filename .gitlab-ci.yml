@@ -8,11 +8,6 @@ stages:
   - validation
   - build
 
-test:
-  stage: validation
-  script:
-    - npm test
-
 lint:
   stage: validation  
   script:
