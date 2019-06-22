@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
 import { ProfileService } from '../../services/profile.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
   ],
   declarations: [ProfilePage],
   providers: [
-    ProfileService
+    ProfileService,
+    AmplifyService
   ]
 })
 export class ProfilePageModule {}
