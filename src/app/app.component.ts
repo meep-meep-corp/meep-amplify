@@ -17,14 +17,9 @@ export class AppComponent {
 
   public appPages = [
     {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: 'analytics'
     },
     {
       title: 'Profile',
@@ -36,11 +31,6 @@ export class AppComponent {
       url: '/maps',
       icon: 'map'
     },
-    {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: 'analytics'
-    }
   ];
 
   constructor(
