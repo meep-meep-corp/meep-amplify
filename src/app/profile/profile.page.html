@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid">
+    <ion-row justify-content-center align-items-center>
+      <ion-thumbnail>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+    </ion-row>
+    <ion-row *ngFor="let item of items">
+      <ion-col class="right">
+        <div>{{item.property}}</div>
+      </ion-col>
+      <ion-col>
+        <div>{{item.value}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
