@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {APIService} from '../API.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ export class HomePage {
   title = 'amplify-angular-app';
 
 
-  constructor() {
+  constructor(private apiService: APIService) {
+    this.apiService.ListUsers().then(result => console.log(result));
   }
 
 }
