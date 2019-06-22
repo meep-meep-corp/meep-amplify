@@ -136,3 +136,23 @@ query ListTrips(
     nextToken
   }
 }
+query UserByEmail(
+  $email: String
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  userByEmail(
+    email: $email
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      name
+      email
+    }
+    nextToken
+  }
+}
