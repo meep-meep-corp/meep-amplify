@@ -62,6 +62,17 @@ query GetUser($id: ID!) {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 query ListUsers(
@@ -74,6 +85,9 @@ query ListUsers(
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     nextToken
   }
@@ -85,6 +99,9 @@ query GetTrip($id: ID!) {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
@@ -152,6 +169,9 @@ query UserByEmail(
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     nextToken
   }

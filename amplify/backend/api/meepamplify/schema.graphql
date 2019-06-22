@@ -24,13 +24,14 @@ type User @model @key(name: "ByEmail", fields: ["email"], queryField: "userByEma
   id: ID!
   name: String!
   email: String!
+  trips: [Trip] @connection(name: "UserTrips")
 }
 
 type Trip @model {
   id: ID!
-  user: User
+  user: User @connection(name: "UserTrips")
   vehicle: Vehicle
-  cost: Float!
+  cost: Int!
   startCoords: String
   endCoords: String
   startTime: String

@@ -70,6 +70,17 @@ subscription OnCreateUser {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateUser {
@@ -77,6 +88,17 @@ subscription OnUpdateUser {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 subscription OnDeleteUser {
@@ -84,6 +106,17 @@ subscription OnDeleteUser {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 subscription OnCreateTrip {
@@ -93,6 +126,9 @@ subscription OnCreateTrip {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
@@ -121,6 +157,9 @@ subscription OnUpdateTrip {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
@@ -149,6 +188,9 @@ subscription OnDeleteTrip {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id

@@ -72,6 +72,7 @@ export type CreateTripInput = {
   endCoords?: string | null;
   startTime?: string | null;
   endTime?: string | null;
+  tripUserId?: string | null;
 };
 
 export type UpdateTripInput = {
@@ -81,6 +82,7 @@ export type UpdateTripInput = {
   endCoords?: string | null;
   startTime?: string | null;
   endTime?: string | null;
+  tripUserId?: string | null;
 };
 
 export type DeleteTripInput = {
@@ -162,7 +164,7 @@ export type ModelUserFilterInput = {
 
 export type ModelTripFilterInput = {
   id?: ModelIDFilterInput | null;
-  cost?: ModelFloatFilterInput | null;
+  cost?: ModelIntFilterInput | null;
   startCoords?: ModelStringFilterInput | null;
   endCoords?: ModelStringFilterInput | null;
   startTime?: ModelStringFilterInput | null;
@@ -170,18 +172,6 @@ export type ModelTripFilterInput = {
   and?: Array<ModelTripFilterInput | null> | null;
   or?: Array<ModelTripFilterInput | null> | null;
   not?: ModelTripFilterInput | null;
-};
-
-export type ModelFloatFilterInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  contains?: number | null;
-  notContains?: number | null;
-  between?: Array<number | null> | null;
 };
 
 export type CreateVehicleMutation = {
@@ -258,6 +248,19 @@ export type CreateUserMutation = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateUserMutation = {
@@ -265,6 +268,19 @@ export type UpdateUserMutation = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteUserMutation = {
@@ -272,6 +288,19 @@ export type DeleteUserMutation = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type CreateTripMutation = {
@@ -282,6 +311,10 @@ export type CreateTripMutation = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -313,6 +346,10 @@ export type UpdateTripMutation = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -344,6 +381,10 @@ export type DeleteTripMutation = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -426,6 +467,19 @@ export type GetUserQuery = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListUsersQuery = {
@@ -435,6 +489,10 @@ export type ListUsersQuery = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -447,6 +505,10 @@ export type GetTripQuery = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -506,6 +568,10 @@ export type UserByEmailQuery = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -584,6 +650,19 @@ export type OnCreateUserSubscription = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateUserSubscription = {
@@ -591,6 +670,19 @@ export type OnUpdateUserSubscription = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteUserSubscription = {
@@ -598,6 +690,19 @@ export type OnDeleteUserSubscription = {
   id: string;
   name: string;
   email: string;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnCreateTripSubscription = {
@@ -608,6 +713,10 @@ export type OnCreateTripSubscription = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -639,6 +748,10 @@ export type OnUpdateTripSubscription = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -670,6 +783,10 @@ export type OnDeleteTripSubscription = {
     id: string;
     name: string;
     email: string;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -845,6 +962,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -862,6 +992,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -879,6 +1022,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -899,6 +1055,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -940,6 +1100,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -981,6 +1145,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -1135,6 +1303,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1158,6 +1339,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1187,6 +1372,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -1282,6 +1471,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1429,6 +1622,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1442,6 +1648,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1455,6 +1674,19 @@ export class APIService {
           id
           name
           email
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1471,6 +1703,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -1508,6 +1744,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
@@ -1545,6 +1785,10 @@ export class APIService {
             id
             name
             email
+            trips {
+              __typename
+              nextToken
+            }
           }
           vehicle {
             __typename
