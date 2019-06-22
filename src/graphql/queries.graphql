@@ -26,6 +26,8 @@ query GetVehicle($id: ID!) {
       }
       nextToken
     }
+    type
+    url
   }
 }
 query ListVehicles(
@@ -49,6 +51,8 @@ query ListVehicles(
       trips {
         nextToken
       }
+      type
+      url
     }
     nextToken
   }
@@ -66,6 +70,8 @@ query GetProvider($id: ID!) {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -149,6 +155,8 @@ query GetTrip($id: ID!) {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
@@ -177,6 +185,8 @@ query ListTrips(
         location
         status
         battery
+        type
+        url
       }
       cost
       startCoords

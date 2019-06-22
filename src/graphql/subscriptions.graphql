@@ -26,6 +26,8 @@ subscription OnCreateVehicle {
       }
       nextToken
     }
+    type
+    url
   }
 }
 subscription OnUpdateVehicle {
@@ -55,6 +57,8 @@ subscription OnUpdateVehicle {
       }
       nextToken
     }
+    type
+    url
   }
 }
 subscription OnDeleteVehicle {
@@ -84,6 +88,8 @@ subscription OnDeleteVehicle {
       }
       nextToken
     }
+    type
+    url
   }
 }
 subscription OnCreateProvider {
@@ -99,6 +105,8 @@ subscription OnCreateProvider {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -117,6 +125,8 @@ subscription OnUpdateProvider {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -135,6 +145,8 @@ subscription OnDeleteProvider {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -220,6 +232,8 @@ subscription OnCreateTrip {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
@@ -254,6 +268,8 @@ subscription OnUpdateTrip {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
@@ -288,6 +304,8 @@ subscription OnDeleteTrip {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords

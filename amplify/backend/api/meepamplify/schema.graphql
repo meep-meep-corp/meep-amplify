@@ -13,6 +13,8 @@ type Vehicle @model {
   battery: Int
   provider: Provider @connection(name: "ProviderVehicles")
   trips: [Trip] @connection(name: "VehicleTrips")
+  type: String
+  url: String
 }
 
 type Provider @model {
