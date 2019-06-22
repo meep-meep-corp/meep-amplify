@@ -22,6 +22,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     if (this.auth.user) {
       console.log(this.auth.user.attributes.email);
+      
       this.api.ListUsers({email: {eq: this.auth.user.attributes.email}}).then((data) => {
         console.log(data);
         this.items.push({ property: 'Name', value: data[0].name});
