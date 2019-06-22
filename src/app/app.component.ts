@@ -37,6 +37,11 @@ export class AppComponent {
       title: 'Maps',
       url: '/maps',
       icon: 'map'
+    },
+    {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: 'analytics'
     }
   ];
 

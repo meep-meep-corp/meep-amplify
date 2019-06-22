@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col align-items-left>
+        <ion-thumbnail>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-button float-right color="success">Green Footprint</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-toolbar color="primary">
+          <ion-title>{{viewTitle}}</ion-title>
+      </ion-toolbar>
+      <calendar class="full"
+        [eventSource]="eventSource" 
+        [calendarMode]="calendar.mode" 
+        [currentDate]="calendar.currentDate"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)" 
+        startHour="6"
+        endHour="20"
+        step="30"
+        startingDayWeek="1">
+      </calendar>
+    </ion-row>
+    <ion-row *ngIf="eventDetails">
+      <ion-card class="full">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p>Title</p>
+            </ion-col>
+            <ion-col>
+              <p>{{event.title}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p>StartTime</p>
+            </ion-col>
+            <ion-col>
+              <p>{{event.startTime}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p>EndTime</p>
+            </ion-col>
+            <ion-col>
+              <p>{{event.endTime}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p>AllDay</p>
+            </ion-col>
+            <ion-col>
+              <p>{{event.allDay}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
