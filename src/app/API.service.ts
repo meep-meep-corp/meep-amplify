@@ -52,7 +52,7 @@ export type DeleteProviderInput = {
 export type CreateUserInput = {
   id?: string | null;
   name: string;
-  email?: string | null;
+  email: string;
 };
 
 export type UpdateUserInput = {
@@ -257,21 +257,21 @@ export type CreateUserMutation = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type UpdateUserMutation = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type DeleteUserMutation = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type CreateTripMutation = {
@@ -281,7 +281,7 @@ export type CreateTripMutation = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -312,7 +312,7 @@ export type UpdateTripMutation = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -343,7 +343,7 @@ export type DeleteTripMutation = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -425,7 +425,7 @@ export type GetUserQuery = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type ListUsersQuery = {
@@ -434,7 +434,7 @@ export type ListUsersQuery = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null> | null;
   nextToken: string | null;
 };
@@ -446,7 +446,7 @@ export type GetTripQuery = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -479,7 +479,7 @@ export type ListTripsQuery = {
       __typename: "User";
       id: string;
       name: string;
-      email: string | null;
+      email: string;
     } | null;
     vehicle: {
       __typename: "Vehicle";
@@ -572,21 +572,21 @@ export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
-  email: string | null;
+  email: string;
 };
 
 export type OnCreateTripSubscription = {
@@ -596,7 +596,7 @@ export type OnCreateTripSubscription = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -627,7 +627,7 @@ export type OnUpdateTripSubscription = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
@@ -658,7 +658,7 @@ export type OnDeleteTripSubscription = {
     __typename: "User";
     id: string;
     name: string;
-    email: string | null;
+    email: string;
   } | null;
   vehicle: {
     __typename: "Vehicle";
