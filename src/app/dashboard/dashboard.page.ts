@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from '../API.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,10 +17,36 @@ export class DashboardPage implements OnInit {
     currentDate: new Date(),
   };
 
-  constructor() { }
+  constructor(private api: APIService, private auth: AuthGuardService) { }
 
   ngOnInit() {
-    this.eventSource = this.createRandomEvents();
+    if (this.auth.user) {
+      this.api.UserByEmail(this.auth.user.attributes.email).then(data => {
+        this.eventSource = this.createEvents(data.items[0].trips['items']);
+        console.log(this.eventSource)
+      });
+    }
+  }
+
+  createEvents(events: any) {
+    let toRet = [];
+    events.forEach(element => {
+      var start = new Date(element.startTime * 1000);
+      var end = new Date(element.endTime * 1000);
+      var startCoords = element.startCoords;
+      var endCoords = element.endCoords;
+      var cost = element.cost;
+
+      toRet.push({
+        title: 'Event - test',
+        startTime: start,
+        endTime: end,
+        startCoords: startCoords,
+        endCoords: endCoords,
+        cost: cost,
+      });
+    });
+    return toRet;
   }
 
   onEventSelected(event) {

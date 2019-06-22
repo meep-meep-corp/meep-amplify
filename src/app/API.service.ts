@@ -1472,6 +1472,14 @@ export class APIService {
             name
             email
             trips {
+              items {
+                id
+                cost
+                startCoords
+                endCoords
+                startTime
+                endTime
+              }
               __typename
               nextToken
             }

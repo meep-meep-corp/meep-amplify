@@ -14,6 +14,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { MarkerEventService } from '../../services/marker.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LockService } from '../services/lock.service';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { APIService } from '../API.service';
 
 @Component({
   selector: 'app-maps',
@@ -26,7 +29,7 @@ export class MapsPage implements OnInit {
   acceptDisabled = true;
   map: GoogleMap;
   constructor(private platform: Platform, private alertCtrl: AlertController, private markerService: MarkerEventService,
-  private geolocation: Geolocation) { }
+  private geolocation: Geolocation, private lockService: LockService, private auth: AuthGuardService, private api: APIService) { }
 
   async ngOnInit() {
     await this.platform.ready();
@@ -38,9 +41,11 @@ export class MapsPage implements OnInit {
 
     this.geolocation.getCurrentPosition().then((resp) => {
       this.loadMap(resp.coords.latitude, resp.coords.longitude);
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+    this.api.ListVehicles().then(data => console.log(data));
   }
 
   loadMap(lat: number, lon: number) {
@@ -98,6 +103,7 @@ export class MapsPage implements OnInit {
     }, (err) => {
       // An error occurred
       console.log('error');
+      this.presentPrompt();
     });
   }
 
@@ -109,7 +115,12 @@ export class MapsPage implements OnInit {
           text: 'Yes',
           role: 'yes',
           handler: data => {
-            console.log('Yes clicked');
+            if (this.auth.user) {
+              this.api.UserByEmail(this.auth.user.attributes.email).then((data) => {
+                console.log(data);
+                this.lockService.lock(data.items[0].id).subscribe(() => console.log('locked'), err => console.log(err));
+              });
+            }
           }
         },
         {
@@ -122,5 +133,19 @@ export class MapsPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  unlock() {
+    BarcodeScanner.scan().then((barcodeData) => {
+      if (this.auth.user) {
+        this.api.UserByEmail(this.auth.user.attributes.email).then((data) => {
+          console.log(data);
+          this.lockService.unlock(data.items[0].id).subscribe(() => console.log('locked'), err => console.log(err));
+        });
+      }
+    }, (err) => {
+      // An error occurred
+      console.log('error');
+    });
   }
 }

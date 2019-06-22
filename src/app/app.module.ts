@@ -20,6 +20,9 @@ import {ProfileService} from '../services/profile.service';
 import {MarkerEventService} from '../services/marker.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+import { HttpClientModule } from '@angular/common/http';
+import { LockService } from './services/lock.service';
+
 @NgModule({
   declarations: [AppComponent,
     LoginPage,
@@ -34,7 +37,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AppRoutingModule,
     AmplifyAngularModule,
     AmplifyIonicModule,
-    NgCalendarModule
+    NgCalendarModule,
+    HttpClientModule,
   ],
   providers: [
     StatusBar,
@@ -45,7 +49,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AuthGuardService,
     ProfileService,
     MarkerEventService,
-    Geolocation
+    Geolocation,
+    LockService,
   ],
   bootstrap: [AppComponent]
 })
