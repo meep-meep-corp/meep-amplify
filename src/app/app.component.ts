@@ -52,15 +52,16 @@ export class AppComponent {
     private authGuardService: AuthGuardService
   ) {
     this.initializeApp();
-
     this.amplifyService.authStateChange$
       .subscribe(authState => {
         console.log(authState);
         this.authGuardService.signedIn = authState.state === 'signedIn';
-        if (!authState.user) {
+        if (authState.user === null) {
           this.authGuardService.user = null;
+          this.router.navigateByUrl('/login');
         } else {
           this.authGuardService.user = authState.user;
+          this.router.navigateByUrl('/home');
         }
       });
   }

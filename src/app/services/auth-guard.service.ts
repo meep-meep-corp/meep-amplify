@@ -11,11 +11,12 @@ export class AuthGuardService implements CanActivate {
   signedIn = false;
   user = null;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public events: Events) {
   }
 
   canActivate() {
-    if  (!this.signedIn) {
+    console.log(this.signedIn);
+    if (!this.signedIn) {
       this.router.navigateByUrl('/login');
       return false;
     } else {
