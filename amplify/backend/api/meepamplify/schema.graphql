@@ -11,7 +11,7 @@ type Vehicle @model {
   location: String
   status: VehicleStatus!
   battery: Int
-  provider(id: ID!): Provider
+  provider: Provider
 }
 
 type Provider @model {
@@ -28,8 +28,8 @@ type User @model {
 
 type Trip @model {
   id: ID!
-  user(id: ID!): User
-  vehicle(id: ID!): Vehicle
+  user: User
+  vehicle: Vehicle
   cost: Float!
   startCoords: String
   endCoords: String

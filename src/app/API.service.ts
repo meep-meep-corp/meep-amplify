@@ -5,41 +5,47 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
-export type CreateVehiculesInput = {
+export type CreateVehicleInput = {
   id?: string | null;
   name: string;
   description?: string | null;
   location?: string | null;
-  status: string;
+  status: VehicleStatus;
   battery?: number | null;
 };
 
-export type UpdateVehiculesInput = {
+export enum VehicleStatus {
+  LOCKED = "LOCKED",
+  AVAILABLE = "AVAILABLE",
+  OUT_OF_SERVICE = "OUT_OF_SERVICE"
+}
+
+export type UpdateVehicleInput = {
   id: string;
   name?: string | null;
   description?: string | null;
   location?: string | null;
-  status?: string | null;
+  status?: VehicleStatus | null;
   battery?: number | null;
 };
 
-export type DeleteVehiculesInput = {
+export type DeleteVehicleInput = {
   id?: string | null;
 };
 
-export type CreateProvidersInput = {
+export type CreateProviderInput = {
   id?: string | null;
   name: string;
   description?: string | null;
 };
 
-export type UpdateProvidersInput = {
+export type UpdateProviderInput = {
   id: string;
   name?: string | null;
   description?: string | null;
 };
 
-export type DeleteProvidersInput = {
+export type DeleteProviderInput = {
   id?: string | null;
 };
 
@@ -59,16 +65,38 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
-export type ModelVehiculesFilterInput = {
+export type CreateTripInput = {
+  id?: string | null;
+  cost: number;
+  startCoords?: string | null;
+  endCoords?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
+};
+
+export type UpdateTripInput = {
+  id: string;
+  cost?: number | null;
+  startCoords?: string | null;
+  endCoords?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
+};
+
+export type DeleteTripInput = {
+  id?: string | null;
+};
+
+export type ModelVehicleFilterInput = {
   id?: ModelIDFilterInput | null;
   name?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   location?: ModelStringFilterInput | null;
-  status?: ModelStringFilterInput | null;
+  status?: ModelVehicleStatusFilterInput | null;
   battery?: ModelIntFilterInput | null;
-  and?: Array<ModelVehiculesFilterInput | null> | null;
-  or?: Array<ModelVehiculesFilterInput | null> | null;
-  not?: ModelVehiculesFilterInput | null;
+  and?: Array<ModelVehicleFilterInput | null> | null;
+  or?: Array<ModelVehicleFilterInput | null> | null;
+  not?: ModelVehicleFilterInput | null;
 };
 
 export type ModelIDFilterInput = {
@@ -97,6 +125,11 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null;
 };
 
+export type ModelVehicleStatusFilterInput = {
+  eq?: VehicleStatus | null;
+  ne?: VehicleStatus | null;
+};
+
 export type ModelIntFilterInput = {
   ne?: number | null;
   eq?: number | null;
@@ -109,13 +142,13 @@ export type ModelIntFilterInput = {
   between?: Array<number | null> | null;
 };
 
-export type ModelProvidersFilterInput = {
+export type ModelProviderFilterInput = {
   id?: ModelIDFilterInput | null;
   name?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
-  and?: Array<ModelProvidersFilterInput | null> | null;
-  or?: Array<ModelProvidersFilterInput | null> | null;
-  not?: ModelProvidersFilterInput | null;
+  and?: Array<ModelProviderFilterInput | null> | null;
+  or?: Array<ModelProviderFilterInput | null> | null;
+  not?: ModelProviderFilterInput | null;
 };
 
 export type ModelUserFilterInput = {
@@ -127,52 +160,94 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null;
 };
 
-export type CreateVehiculesMutation = {
-  __typename: "Vehicules";
+export type ModelTripFilterInput = {
+  id?: ModelIDFilterInput | null;
+  cost?: ModelFloatFilterInput | null;
+  startCoords?: ModelStringFilterInput | null;
+  endCoords?: ModelStringFilterInput | null;
+  startTime?: ModelStringFilterInput | null;
+  endTime?: ModelStringFilterInput | null;
+  and?: Array<ModelTripFilterInput | null> | null;
+  or?: Array<ModelTripFilterInput | null> | null;
+  not?: ModelTripFilterInput | null;
+};
+
+export type ModelFloatFilterInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  contains?: number | null;
+  notContains?: number | null;
+  between?: Array<number | null> | null;
+};
+
+export type CreateVehicleMutation = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type UpdateVehiculesMutation = {
-  __typename: "Vehicules";
+export type UpdateVehicleMutation = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type DeleteVehiculesMutation = {
-  __typename: "Vehicules";
+export type DeleteVehicleMutation = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type CreateProvidersMutation = {
-  __typename: "Providers";
+export type CreateProviderMutation = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
 };
 
-export type UpdateProvidersMutation = {
-  __typename: "Providers";
+export type UpdateProviderMutation = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
 };
 
-export type DeleteProvidersMutation = {
-  __typename: "Providers";
+export type DeleteProviderMutation = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
@@ -199,41 +274,146 @@ export type DeleteUserMutation = {
   email: string | null;
 };
 
-export type GetVehiculesQuery = {
-  __typename: "Vehicules";
+export type CreateTripMutation = {
+  __typename: "Trip";
   id: string;
-  name: string;
-  description: string | null;
-  location: string | null;
-  status: string;
-  battery: number | null;
-};
-
-export type ListVehiculessQuery = {
-  __typename: "ModelVehiculesConnection";
-  items: Array<{
-    __typename: "Vehicules";
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
     id: string;
     name: string;
     description: string | null;
     location: string | null;
-    status: string;
+    status: VehicleStatus;
     battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type UpdateTripMutation = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type DeleteTripMutation = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type GetVehicleQuery = {
+  __typename: "Vehicle";
+  id: string;
+  name: string;
+  description: string | null;
+  location: string | null;
+  status: VehicleStatus;
+  battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
+};
+
+export type ListVehiclesQuery = {
+  __typename: "ModelVehicleConnection";
+  items: Array<{
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
 
-export type GetProvidersQuery = {
-  __typename: "Providers";
+export type GetProviderQuery = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
 };
 
-export type ListProviderssQuery = {
-  __typename: "ModelProvidersConnection";
+export type ListProvidersQuery = {
+  __typename: "ModelProviderConnection";
   items: Array<{
-    __typename: "Providers";
+    __typename: "Provider";
     id: string;
     name: string;
     description: string | null;
@@ -259,52 +439,130 @@ export type ListUsersQuery = {
   nextToken: string | null;
 };
 
-export type OnCreateVehiculesSubscription = {
-  __typename: "Vehicules";
+export type GetTripQuery = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type ListTripsQuery = {
+  __typename: "ModelTripConnection";
+  items: Array<{
+    __typename: "Trip";
+    id: string;
+    user: {
+      __typename: "User";
+      id: string;
+      name: string;
+      email: string | null;
+    } | null;
+    vehicle: {
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null;
+    cost: number;
+    startCoords: string | null;
+    endCoords: string | null;
+    startTime: string | null;
+    endTime: string | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type OnCreateVehicleSubscription = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type OnUpdateVehiculesSubscription = {
-  __typename: "Vehicules";
+export type OnUpdateVehicleSubscription = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type OnDeleteVehiculesSubscription = {
-  __typename: "Vehicules";
+export type OnDeleteVehicleSubscription = {
+  __typename: "Vehicle";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
-  status: string;
+  status: VehicleStatus;
   battery: number | null;
+  provider: {
+    __typename: "Provider";
+    id: string;
+    name: string;
+    description: string | null;
+  } | null;
 };
 
-export type OnCreateProvidersSubscription = {
-  __typename: "Providers";
+export type OnCreateProviderSubscription = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
 };
 
-export type OnUpdateProvidersSubscription = {
-  __typename: "Providers";
+export type OnUpdateProviderSubscription = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
 };
 
-export type OnDeleteProvidersSubscription = {
-  __typename: "Providers";
+export type OnDeleteProviderSubscription = {
+  __typename: "Provider";
   id: string;
   name: string;
   description: string | null;
@@ -331,15 +589,108 @@ export type OnDeleteUserSubscription = {
   email: string | null;
 };
 
+export type OnCreateTripSubscription = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type OnUpdateTripSubscription = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
+export type OnDeleteTripSubscription = {
+  __typename: "Trip";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null;
+  vehicle: {
+    __typename: "Vehicle";
+    id: string;
+    name: string;
+    description: string | null;
+    location: string | null;
+    status: VehicleStatus;
+    battery: number | null;
+    provider: {
+      __typename: "Provider";
+      id: string;
+      name: string;
+      description: string | null;
+    } | null;
+  } | null;
+  cost: number;
+  startCoords: string | null;
+  endCoords: string | null;
+  startTime: string | null;
+  endTime: string | null;
+};
+
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
-  async CreateVehicules(
-    input: CreateVehiculesInput
-  ): Promise<CreateVehiculesMutation> {
-    const statement = `mutation CreateVehicules($input: CreateVehiculesInput!) {
-        createVehicules(input: $input) {
+  async CreateVehicle(
+    input: CreateVehicleInput
+  ): Promise<CreateVehicleMutation> {
+    const statement = `mutation CreateVehicle($input: CreateVehicleInput!) {
+        createVehicle(input: $input) {
           __typename
           id
           name
@@ -347,6 +698,12 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -355,13 +712,13 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateVehiculesMutation>response.data.createVehicules;
+    return <CreateVehicleMutation>response.data.createVehicle;
   }
-  async UpdateVehicules(
-    input: UpdateVehiculesInput
-  ): Promise<UpdateVehiculesMutation> {
-    const statement = `mutation UpdateVehicules($input: UpdateVehiculesInput!) {
-        updateVehicules(input: $input) {
+  async UpdateVehicle(
+    input: UpdateVehicleInput
+  ): Promise<UpdateVehicleMutation> {
+    const statement = `mutation UpdateVehicle($input: UpdateVehicleInput!) {
+        updateVehicle(input: $input) {
           __typename
           id
           name
@@ -369,6 +726,12 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -377,13 +740,13 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateVehiculesMutation>response.data.updateVehicules;
+    return <UpdateVehicleMutation>response.data.updateVehicle;
   }
-  async DeleteVehicules(
-    input: DeleteVehiculesInput
-  ): Promise<DeleteVehiculesMutation> {
-    const statement = `mutation DeleteVehicules($input: DeleteVehiculesInput!) {
-        deleteVehicules(input: $input) {
+  async DeleteVehicle(
+    input: DeleteVehicleInput
+  ): Promise<DeleteVehicleMutation> {
+    const statement = `mutation DeleteVehicle($input: DeleteVehicleInput!) {
+        deleteVehicle(input: $input) {
           __typename
           id
           name
@@ -391,6 +754,12 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -399,13 +768,13 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteVehiculesMutation>response.data.deleteVehicules;
+    return <DeleteVehicleMutation>response.data.deleteVehicle;
   }
-  async CreateProviders(
-    input: CreateProvidersInput
-  ): Promise<CreateProvidersMutation> {
-    const statement = `mutation CreateProviders($input: CreateProvidersInput!) {
-        createProviders(input: $input) {
+  async CreateProvider(
+    input: CreateProviderInput
+  ): Promise<CreateProviderMutation> {
+    const statement = `mutation CreateProvider($input: CreateProviderInput!) {
+        createProvider(input: $input) {
           __typename
           id
           name
@@ -418,13 +787,13 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateProvidersMutation>response.data.createProviders;
+    return <CreateProviderMutation>response.data.createProvider;
   }
-  async UpdateProviders(
-    input: UpdateProvidersInput
-  ): Promise<UpdateProvidersMutation> {
-    const statement = `mutation UpdateProviders($input: UpdateProvidersInput!) {
-        updateProviders(input: $input) {
+  async UpdateProvider(
+    input: UpdateProviderInput
+  ): Promise<UpdateProviderMutation> {
+    const statement = `mutation UpdateProvider($input: UpdateProviderInput!) {
+        updateProvider(input: $input) {
           __typename
           id
           name
@@ -437,13 +806,13 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateProvidersMutation>response.data.updateProviders;
+    return <UpdateProviderMutation>response.data.updateProvider;
   }
-  async DeleteProviders(
-    input: DeleteProvidersInput
-  ): Promise<DeleteProvidersMutation> {
-    const statement = `mutation DeleteProviders($input: DeleteProvidersInput!) {
-        deleteProviders(input: $input) {
+  async DeleteProvider(
+    input: DeleteProviderInput
+  ): Promise<DeleteProviderMutation> {
+    const statement = `mutation DeleteProvider($input: DeleteProviderInput!) {
+        deleteProvider(input: $input) {
           __typename
           id
           name
@@ -456,7 +825,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteProvidersMutation>response.data.deleteProviders;
+    return <DeleteProviderMutation>response.data.deleteProvider;
   }
   async CreateUser(input: CreateUserInput): Promise<CreateUserMutation> {
     const statement = `mutation CreateUser($input: CreateUserInput!) {
@@ -509,9 +878,132 @@ export class APIService {
     )) as any;
     return <DeleteUserMutation>response.data.deleteUser;
   }
-  async GetVehicules(id: string): Promise<GetVehiculesQuery> {
-    const statement = `query GetVehicules($id: ID!) {
-        getVehicules(id: $id) {
+  async CreateTrip(input: CreateTripInput): Promise<CreateTripMutation> {
+    const statement = `mutation CreateTrip($input: CreateTripInput!) {
+        createTrip(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateTripMutation>response.data.createTrip;
+  }
+  async UpdateTrip(input: UpdateTripInput): Promise<UpdateTripMutation> {
+    const statement = `mutation UpdateTrip($input: UpdateTripInput!) {
+        updateTrip(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateTripMutation>response.data.updateTrip;
+  }
+  async DeleteTrip(input: DeleteTripInput): Promise<DeleteTripMutation> {
+    const statement = `mutation DeleteTrip($input: DeleteTripInput!) {
+        deleteTrip(input: $input) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTripMutation>response.data.deleteTrip;
+  }
+  async GetVehicle(id: string): Promise<GetVehicleQuery> {
+    const statement = `query GetVehicle($id: ID!) {
+        getVehicle(id: $id) {
           __typename
           id
           name
@@ -519,6 +1011,12 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -527,15 +1025,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetVehiculesQuery>response.data.getVehicules;
+    return <GetVehicleQuery>response.data.getVehicle;
   }
-  async ListVehiculess(
-    filter?: ModelVehiculesFilterInput,
+  async ListVehicles(
+    filter?: ModelVehicleFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListVehiculessQuery> {
-    const statement = `query ListVehiculess($filter: ModelVehiculesFilterInput, $limit: Int, $nextToken: String) {
-        listVehiculess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListVehiclesQuery> {
+    const statement = `query ListVehicles($filter: ModelVehicleFilterInput, $limit: Int, $nextToken: String) {
+        listVehicles(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -545,6 +1043,12 @@ export class APIService {
             location
             status
             battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
           }
           nextToken
         }
@@ -562,11 +1066,11 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListVehiculessQuery>response.data.listVehiculess;
+    return <ListVehiclesQuery>response.data.listVehicles;
   }
-  async GetProviders(id: string): Promise<GetProvidersQuery> {
-    const statement = `query GetProviders($id: ID!) {
-        getProviders(id: $id) {
+  async GetProvider(id: string): Promise<GetProviderQuery> {
+    const statement = `query GetProvider($id: ID!) {
+        getProvider(id: $id) {
           __typename
           id
           name
@@ -579,15 +1083,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetProvidersQuery>response.data.getProviders;
+    return <GetProviderQuery>response.data.getProvider;
   }
-  async ListProviderss(
-    filter?: ModelProvidersFilterInput,
+  async ListProviders(
+    filter?: ModelProviderFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListProviderssQuery> {
-    const statement = `query ListProviderss($filter: ModelProvidersFilterInput, $limit: Int, $nextToken: String) {
-        listProviderss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListProvidersQuery> {
+    const statement = `query ListProviders($filter: ModelProviderFilterInput, $limit: Int, $nextToken: String) {
+        listProviders(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -611,7 +1115,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListProviderssQuery>response.data.listProviderss;
+    return <ListProvidersQuery>response.data.listProviders;
   }
   async GetUser(id: string): Promise<GetUserQuery> {
     const statement = `query GetUser($id: ID!) {
@@ -662,12 +1166,103 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
-  OnCreateVehiculesListener: Observable<
-    OnCreateVehiculesSubscription
+  async GetTrip(id: string): Promise<GetTripQuery> {
+    const statement = `query GetTrip($id: ID!) {
+        getTrip(id: $id) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetTripQuery>response.data.getTrip;
+  }
+  async ListTrips(
+    filter?: ModelTripFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListTripsQuery> {
+    const statement = `query ListTrips($filter: ModelTripFilterInput, $limit: Int, $nextToken: String) {
+        listTrips(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            user {
+              __typename
+              id
+              name
+              email
+            }
+            vehicle {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            cost
+            startCoords
+            endCoords
+            startTime
+            endTime
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListTripsQuery>response.data.listTrips;
+  }
+  OnCreateVehicleListener: Observable<
+    OnCreateVehicleSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateVehicules {
-        onCreateVehicules {
+      `subscription OnCreateVehicle {
+        onCreateVehicle {
           __typename
           id
           name
@@ -675,17 +1270,23 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`
     )
-  ) as Observable<OnCreateVehiculesSubscription>;
+  ) as Observable<OnCreateVehicleSubscription>;
 
-  OnUpdateVehiculesListener: Observable<
-    OnUpdateVehiculesSubscription
+  OnUpdateVehicleListener: Observable<
+    OnUpdateVehicleSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateVehicules {
-        onUpdateVehicules {
+      `subscription OnUpdateVehicle {
+        onUpdateVehicle {
           __typename
           id
           name
@@ -693,17 +1294,23 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`
     )
-  ) as Observable<OnUpdateVehiculesSubscription>;
+  ) as Observable<OnUpdateVehicleSubscription>;
 
-  OnDeleteVehiculesListener: Observable<
-    OnDeleteVehiculesSubscription
+  OnDeleteVehicleListener: Observable<
+    OnDeleteVehicleSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteVehicules {
-        onDeleteVehicules {
+      `subscription OnDeleteVehicle {
+        onDeleteVehicle {
           __typename
           id
           name
@@ -711,17 +1318,23 @@ export class APIService {
           location
           status
           battery
+          provider {
+            __typename
+            id
+            name
+            description
+          }
         }
       }`
     )
-  ) as Observable<OnDeleteVehiculesSubscription>;
+  ) as Observable<OnDeleteVehicleSubscription>;
 
-  OnCreateProvidersListener: Observable<
-    OnCreateProvidersSubscription
+  OnCreateProviderListener: Observable<
+    OnCreateProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateProviders {
-        onCreateProviders {
+      `subscription OnCreateProvider {
+        onCreateProvider {
           __typename
           id
           name
@@ -729,14 +1342,14 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnCreateProvidersSubscription>;
+  ) as Observable<OnCreateProviderSubscription>;
 
-  OnUpdateProvidersListener: Observable<
-    OnUpdateProvidersSubscription
+  OnUpdateProviderListener: Observable<
+    OnUpdateProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateProviders {
-        onUpdateProviders {
+      `subscription OnUpdateProvider {
+        onUpdateProvider {
           __typename
           id
           name
@@ -744,14 +1357,14 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnUpdateProvidersSubscription>;
+  ) as Observable<OnUpdateProviderSubscription>;
 
-  OnDeleteProvidersListener: Observable<
-    OnDeleteProvidersSubscription
+  OnDeleteProviderListener: Observable<
+    OnDeleteProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteProviders {
-        onDeleteProviders {
+      `subscription OnDeleteProvider {
+        onDeleteProvider {
           __typename
           id
           name
@@ -759,7 +1372,7 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteProvidersSubscription>;
+  ) as Observable<OnDeleteProviderSubscription>;
 
   OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
     graphqlOperation(
@@ -799,4 +1412,115 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteUserSubscription>;
+
+  OnCreateTripListener: Observable<OnCreateTripSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateTrip {
+        onCreateTrip {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`
+    )
+  ) as Observable<OnCreateTripSubscription>;
+
+  OnUpdateTripListener: Observable<OnUpdateTripSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateTrip {
+        onUpdateTrip {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`
+    )
+  ) as Observable<OnUpdateTripSubscription>;
+
+  OnDeleteTripListener: Observable<OnDeleteTripSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteTrip {
+        onDeleteTrip {
+          __typename
+          id
+          user {
+            __typename
+            id
+            name
+            email
+          }
+          vehicle {
+            __typename
+            id
+            name
+            description
+            location
+            status
+            battery
+            provider {
+              __typename
+              id
+              name
+              description
+            }
+          }
+          cost
+          startCoords
+          endCoords
+          startTime
+          endTime
+        }
+      }`
+    )
+  ) as Observable<OnDeleteTripSubscription>;
 }
