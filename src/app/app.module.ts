@@ -18,6 +18,7 @@ import {DashboardPage} from './dashboard/dashboard.page';
 import {NgCalendarModule} from 'ionic2-calendar';
 import {ProfileService} from '../services/profile.service';
 import {MarkerEventService} from '../services/marker.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent,
@@ -43,7 +44,8 @@ import {MarkerEventService} from '../services/marker.service';
     APIService,
     AuthGuardService,
     ProfileService,
-    MarkerEventService
+    MarkerEventService,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,7 @@ import { Platform, AlertController } from '@ionic/angular';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { MarkerEventService } from '../../services/marker.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-maps',
@@ -24,24 +25,30 @@ export class MapsPage implements OnInit {
   marker:any = {};
   acceptDisabled = true;
   map: GoogleMap;
-  constructor(private platform: Platform, private alertCtrl: AlertController, private markerService: MarkerEventService) { }
+  constructor(private platform: Platform, private alertCtrl: AlertController, private markerService: MarkerEventService,
+  private geolocation: Geolocation) { }
 
   async ngOnInit() {
     await this.platform.ready();
-    await this.loadMap();
 
     this.markerService.triggered.subscribe((marker) => {
       this.marker = marker;
       this.markerDetails = true;
     })
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.loadMap(resp.coords.latitude, resp.coords.longitude);
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
   }
 
-  loadMap() {
+  loadMap(lat: number, lon: number) {
     this.map = GoogleMaps.create('map_canvas', {
       camera: {
         target: {
-          lat: 43.0741704,
-          lng: -89.3809802
+          lat: lat,
+          lng: lon
         },
         zoom: 18,
         tilt: 30
@@ -50,7 +57,7 @@ export class MapsPage implements OnInit {
 
     let POINTS: BaseArrayClass<any> = new BaseArrayClass<any>([
       {
-        position: { lat: 43.0741704, lng: -89.3809802 },
+        position: { lat: 47.367773400000004, lng: 8.5399146 },
         iconData: {
           type: 'Scooter',
           battery: '80%',
