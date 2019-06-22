@@ -11,6 +11,20 @@ query GetVehicle($id: ID!) {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -32,6 +46,9 @@ query ListVehicles(
         name
         description
       }
+      trips {
+        nextToken
+      }
     }
     nextToken
   }
@@ -41,6 +58,17 @@ query GetProvider($id: ID!) {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 query ListProviders(
@@ -53,6 +81,9 @@ query ListProviders(
       id
       name
       description
+      vehicles {
+        nextToken
+      }
     }
     nextToken
   }
@@ -114,6 +145,9 @@ query GetTrip($id: ID!) {
         id
         name
         description
+      }
+      trips {
+        nextToken
       }
     }
     cost

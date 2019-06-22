@@ -78,8 +78,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "300",
 				"Code": {
-					"S3Bucket": "meep-ui-dev-20190621235655-deployment",
-					"S3Key": "amplify-builds/lex047929e5-1561233266-latest-build.zip"
+					"S3Bucket": "meepnew-prod-20190622220003-deployment",
+					"S3Key": "amplify-builds/lex047929e5-1561233673-latest-build.zip"
 				}
 			}
 		},

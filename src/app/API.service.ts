@@ -12,6 +12,7 @@ export type CreateVehicleInput = {
   location?: string | null;
   status: VehicleStatus;
   battery?: number | null;
+  vehicleProviderId?: string | null;
 };
 
 export enum VehicleStatus {
@@ -27,6 +28,7 @@ export type UpdateVehicleInput = {
   location?: string | null;
   status?: VehicleStatus | null;
   battery?: number | null;
+  vehicleProviderId?: string | null;
 };
 
 export type DeleteVehicleInput = {
@@ -73,6 +75,7 @@ export type CreateTripInput = {
   startTime?: string | null;
   endTime?: string | null;
   tripUserId?: string | null;
+  tripVehicleId?: string | null;
 };
 
 export type UpdateTripInput = {
@@ -83,6 +86,7 @@ export type UpdateTripInput = {
   startTime?: string | null;
   endTime?: string | null;
   tripUserId?: string | null;
+  tripVehicleId?: string | null;
 };
 
 export type DeleteTripInput = {
@@ -187,6 +191,23 @@ export type CreateVehicleMutation = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -203,6 +224,23 @@ export type UpdateVehicleMutation = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -219,6 +257,23 @@ export type DeleteVehicleMutation = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -227,6 +282,19 @@ export type CreateProviderMutation = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateProviderMutation = {
@@ -234,6 +302,19 @@ export type UpdateProviderMutation = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteProviderMutation = {
@@ -241,6 +322,19 @@ export type DeleteProviderMutation = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type CreateUserMutation = {
@@ -330,6 +424,10 @@ export type CreateTripMutation = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   cost: number;
   startCoords: string | null;
@@ -364,6 +462,10 @@ export type UpdateTripMutation = {
       id: string;
       name: string;
       description: string | null;
+    } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   cost: number;
@@ -400,6 +502,10 @@ export type DeleteTripMutation = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   cost: number;
   startCoords: string | null;
@@ -421,6 +527,23 @@ export type GetVehicleQuery = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -440,6 +563,10 @@ export type ListVehiclesQuery = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -449,6 +576,19 @@ export type GetProviderQuery = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListProvidersQuery = {
@@ -458,6 +598,10 @@ export type ListProvidersQuery = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -524,6 +668,10 @@ export type GetTripQuery = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   cost: number;
   startCoords: string | null;
@@ -589,6 +737,23 @@ export type OnCreateVehicleSubscription = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -605,6 +770,23 @@ export type OnUpdateVehicleSubscription = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -621,6 +803,23 @@ export type OnDeleteVehicleSubscription = {
     id: string;
     name: string;
     description: string | null;
+    vehicles: {
+      __typename: "ModelVehicleConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+  trips: {
+    __typename: "ModelTripConnection";
+    items: Array<{
+      __typename: "Trip";
+      id: string;
+      cost: number;
+      startCoords: string | null;
+      endCoords: string | null;
+      startTime: string | null;
+      endTime: string | null;
+    } | null> | null;
+    nextToken: string | null;
   } | null;
 };
 
@@ -629,6 +828,19 @@ export type OnCreateProviderSubscription = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateProviderSubscription = {
@@ -636,6 +848,19 @@ export type OnUpdateProviderSubscription = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteProviderSubscription = {
@@ -643,6 +868,19 @@ export type OnDeleteProviderSubscription = {
   id: string;
   name: string;
   description: string | null;
+  vehicles: {
+    __typename: "ModelVehicleConnection";
+    items: Array<{
+      __typename: "Vehicle";
+      id: string;
+      name: string;
+      description: string | null;
+      location: string | null;
+      status: VehicleStatus;
+      battery: number | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnCreateUserSubscription = {
@@ -732,6 +970,10 @@ export type OnCreateTripSubscription = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   cost: number;
   startCoords: string | null;
@@ -766,6 +1008,10 @@ export type OnUpdateTripSubscription = {
       id: string;
       name: string;
       description: string | null;
+    } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
     } | null;
   } | null;
   cost: number;
@@ -802,6 +1048,10 @@ export type OnDeleteTripSubscription = {
       name: string;
       description: string | null;
     } | null;
+    trips: {
+      __typename: "ModelTripConnection";
+      nextToken: string | null;
+    } | null;
   } | null;
   cost: number;
   startCoords: string | null;
@@ -831,6 +1081,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`;
@@ -859,6 +1126,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`;
@@ -887,6 +1171,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`;
@@ -907,6 +1208,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -926,6 +1240,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -945,6 +1272,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1074,6 +1414,10 @@ export class APIService {
               name
               description
             }
+            trips {
+              __typename
+              nextToken
+            }
           }
           cost
           startCoords
@@ -1118,6 +1462,10 @@ export class APIService {
               id
               name
               description
+            }
+            trips {
+              __typename
+              nextToken
             }
           }
           cost
@@ -1164,6 +1512,10 @@ export class APIService {
               name
               description
             }
+            trips {
+              __typename
+              nextToken
+            }
           }
           cost
           startCoords
@@ -1195,6 +1547,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`;
@@ -1228,6 +1597,10 @@ export class APIService {
               name
               description
             }
+            trips {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1254,6 +1627,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1277,6 +1663,10 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1390,6 +1780,10 @@ export class APIService {
               id
               name
               description
+            }
+            trips {
+              __typename
+              nextToken
             }
           }
           cost
@@ -1523,6 +1917,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`
@@ -1547,6 +1958,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`
@@ -1571,6 +1999,23 @@ export class APIService {
             id
             name
             description
+            vehicles {
+              __typename
+              nextToken
+            }
+          }
+          trips {
+            __typename
+            items {
+              __typename
+              id
+              cost
+              startCoords
+              endCoords
+              startTime
+              endTime
+            }
+            nextToken
           }
         }
       }`
@@ -1587,6 +2032,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1602,6 +2060,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1617,6 +2088,19 @@ export class APIService {
           id
           name
           description
+          vehicles {
+            __typename
+            items {
+              __typename
+              id
+              name
+              description
+              location
+              status
+              battery
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1730,6 +2214,10 @@ export class APIService {
               name
               description
             }
+            trips {
+              __typename
+              nextToken
+            }
           }
           cost
           startCoords
@@ -1771,6 +2259,10 @@ export class APIService {
               name
               description
             }
+            trips {
+              __typename
+              nextToken
+            }
           }
           cost
           startCoords
@@ -1811,6 +2303,10 @@ export class APIService {
               id
               name
               description
+            }
+            trips {
+              __typename
+              nextToken
             }
           }
           cost

@@ -10,3 +10,4 @@ projects:
         codeGenTarget: angular
         generatedFileName: src/app/API.service.ts
         docsFilePath: src/graphql
+        maxDepth: 3

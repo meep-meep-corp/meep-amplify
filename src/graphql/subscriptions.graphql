@@ -11,6 +11,20 @@ subscription OnCreateVehicle {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -26,6 +40,20 @@ subscription OnUpdateVehicle {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -41,6 +69,20 @@ subscription OnDeleteVehicle {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -49,6 +91,17 @@ subscription OnCreateProvider {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateProvider {
@@ -56,6 +109,17 @@ subscription OnUpdateProvider {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 subscription OnDeleteProvider {
@@ -63,6 +127,17 @@ subscription OnDeleteProvider {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 subscription OnCreateUser {
@@ -142,6 +217,9 @@ subscription OnCreateTrip {
         name
         description
       }
+      trips {
+        nextToken
+      }
     }
     cost
     startCoords
@@ -173,6 +251,9 @@ subscription OnUpdateTrip {
         name
         description
       }
+      trips {
+        nextToken
+      }
     }
     cost
     startCoords
@@ -203,6 +284,9 @@ subscription OnDeleteTrip {
         id
         name
         description
+      }
+      trips {
+        nextToken
       }
     }
     cost

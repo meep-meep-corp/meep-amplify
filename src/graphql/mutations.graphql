@@ -11,6 +11,20 @@ mutation CreateVehicle($input: CreateVehicleInput!) {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -26,6 +40,20 @@ mutation UpdateVehicle($input: UpdateVehicleInput!) {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -41,6 +69,20 @@ mutation DeleteVehicle($input: DeleteVehicleInput!) {
       id
       name
       description
+      vehicles {
+        nextToken
+      }
+    }
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
     }
   }
 }
@@ -49,6 +91,17 @@ mutation CreateProvider($input: CreateProviderInput!) {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateProvider($input: UpdateProviderInput!) {
@@ -56,6 +109,17 @@ mutation UpdateProvider($input: UpdateProviderInput!) {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteProvider($input: DeleteProviderInput!) {
@@ -63,6 +127,17 @@ mutation DeleteProvider($input: DeleteProviderInput!) {
     id
     name
     description
+    vehicles {
+      items {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      nextToken
+    }
   }
 }
 mutation CreateUser($input: CreateUserInput!) {
@@ -142,6 +217,9 @@ mutation CreateTrip($input: CreateTripInput!) {
         name
         description
       }
+      trips {
+        nextToken
+      }
     }
     cost
     startCoords
@@ -173,6 +251,9 @@ mutation UpdateTrip($input: UpdateTripInput!) {
         name
         description
       }
+      trips {
+        nextToken
+      }
     }
     cost
     startCoords
@@ -203,6 +284,9 @@ mutation DeleteTrip($input: DeleteTripInput!) {
         id
         name
         description
+      }
+      trips {
+        nextToken
       }
     }
     cost

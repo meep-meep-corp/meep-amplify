@@ -11,13 +11,15 @@ type Vehicle @model {
   location: String
   status: VehicleStatus!
   battery: Int
-  provider: Provider
+  provider: Provider @connection(name: "ProviderVehicles")
+  trips: [Trip] @connection(name: "VehicleTrips")
 }
 
 type Provider @model {
   id: ID!
   name: String!
   description: String
+  vehicles: [Vehicle] @connection(name: "ProviderVehicles")
 }
 
 type User @model @key(name: "ByEmail", fields: ["email"], queryField: "userByEmail") {
@@ -30,7 +32,7 @@ type User @model @key(name: "ByEmail", fields: ["email"], queryField: "userByEma
 type Trip @model {
   id: ID!
   user: User @connection(name: "UserTrips")
-  vehicle: Vehicle
+  vehicle: Vehicle @connection(name: "VehicleTrips")
   cost: Int!
   startCoords: String
   endCoords: String

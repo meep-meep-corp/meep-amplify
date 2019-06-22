@@ -5,6 +5,7 @@ import {LoginPage} from './login/login.page';
 import {DashboardPage} from './dashboard/dashboard.page';
 import {MapsPage} from './maps/maps.page';
 import {ProfilePage} from './profile/profile.page';
+import {ChatbotPage} from './chatbot/chatbot.page';
 
 const routes: Routes = [
   {
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path: 'profile', component: ProfilePage, canActivate: [AuthGuardService]},
   {path: 'maps', component: MapsPage, canActivate: [AuthGuardService]},
   {path: 'dashboard', component: DashboardPage, canActivate: [AuthGuardService]},
+  {path: 'chatbot', component: ChatbotPage, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginPage},
+  {path: 'chatbot', component: ChatbotPage, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

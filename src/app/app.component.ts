@@ -29,6 +29,11 @@ export class AppComponent {
       url: '/maps',
       icon: 'map'
     },
+    {
+      title: 'Chatbot',
+      url: '/chatbot',
+      icon: 'chatboxes'
+    },
   ];
 
   constructor(

@@ -19,16 +19,16 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import {MarkerEventService} from '../services/marker.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {ProfileService} from './services/profile.service';
-
 import { HttpClientModule } from '@angular/common/http';
 import { LockService } from './services/lock.service';
+import {ChatbotPage} from './chatbot/chatbot.page';
 
 @NgModule({
   declarations: [AppComponent,
     LoginPage,
     ProfilePage,
     MapsPage,
-    DashboardPage
+    ChatbotPage
   ],
   entryComponents: [],
   imports: [
