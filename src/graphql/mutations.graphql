@@ -26,6 +26,8 @@ mutation CreateVehicle($input: CreateVehicleInput!) {
       }
       nextToken
     }
+    type
+    url
   }
 }
 mutation UpdateVehicle($input: UpdateVehicleInput!) {
@@ -55,6 +57,8 @@ mutation UpdateVehicle($input: UpdateVehicleInput!) {
       }
       nextToken
     }
+    type
+    url
   }
 }
 mutation DeleteVehicle($input: DeleteVehicleInput!) {
@@ -84,6 +88,8 @@ mutation DeleteVehicle($input: DeleteVehicleInput!) {
       }
       nextToken
     }
+    type
+    url
   }
 }
 mutation CreateProvider($input: CreateProviderInput!) {
@@ -99,6 +105,8 @@ mutation CreateProvider($input: CreateProviderInput!) {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -117,6 +125,8 @@ mutation UpdateProvider($input: UpdateProviderInput!) {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -135,6 +145,8 @@ mutation DeleteProvider($input: DeleteProviderInput!) {
         location
         status
         battery
+        type
+        url
       }
       nextToken
     }
@@ -220,6 +232,8 @@ mutation CreateTrip($input: CreateTripInput!) {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
@@ -254,6 +268,8 @@ mutation UpdateTrip($input: UpdateTripInput!) {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
@@ -288,6 +304,8 @@ mutation DeleteTrip($input: DeleteTripInput!) {
       trips {
         nextToken
       }
+      type
+      url
     }
     cost
     startCoords
