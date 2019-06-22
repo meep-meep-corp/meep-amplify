@@ -1,0 +1,20 @@
+{
+    "appName": "meepui",
+    "roleName": "pinpointLambdaRoleecd93fbc",
+    "cloudWatchPolicyName": "cloudWatchPolicyecd93fbc",
+    "pinpointPolicyName": "pinpointPolicyecd93fbc",
+    "authPolicyName": "pinpoint_amplify_ecd93fbc",
+    "unauthPolicyName": "pinpoint_amplify_ecd93fbc",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

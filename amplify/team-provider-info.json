@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "meep-ui-dev-20190621235655-authRole",
+            "UnauthRoleArn": "arn:aws:iam::712196630605:role/meep-ui-dev-20190621235655-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::712196630605:role/meep-ui-dev-20190621235655-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "meep-ui-dev-20190621235655-deployment",
+            "UnauthRoleName": "meep-ui-dev-20190621235655-unauthRole",
+            "StackName": "meep-ui-dev-20190621235655",
+            "StackId": "arn:aws:cloudformation:eu-central-1:712196630605:stack/meep-ui-dev-20190621235655/7c039100-946f-11e9-b01a-0692890e48f0"
+        },
+        "categories": {
+            "auth": {
+                "meepuid7694d9f": {}
+            }
+        }
+    }
+}
