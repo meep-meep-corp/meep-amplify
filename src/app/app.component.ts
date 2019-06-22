@@ -29,6 +29,11 @@ export class AppComponent {
       url: '/maps',
       icon: 'map'
     },
+    {
+      title: 'Scoreboard',
+      url: '/scoreboard',
+      icon: 'medal'
+    },
   ];
 
   constructor(

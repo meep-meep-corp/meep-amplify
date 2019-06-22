@@ -22,13 +22,16 @@ import {ProfileService} from './services/profile.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LockService } from './services/lock.service';
+import { ScoreboardPage } from './scoreboard/scoreboard.page';
+import { ScoreboardService } from './services/scoreboard.service';
 
 @NgModule({
   declarations: [AppComponent,
     LoginPage,
     ProfilePage,
     MapsPage,
-    DashboardPage
+    DashboardPage,
+    ScoreboardPage,
   ],
   entryComponents: [],
   imports: [
@@ -51,6 +54,7 @@ import { LockService } from './services/lock.service';
     MarkerEventService,
     Geolocation,
     LockService,
+    ScoreboardService,
   ],
   bootstrap: [AppComponent]
 })

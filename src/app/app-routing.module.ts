@@ -5,6 +5,7 @@ import {LoginPage} from './login/login.page';
 import {DashboardPage} from './dashboard/dashboard.page';
 import {MapsPage} from './maps/maps.page';
 import {ProfilePage} from './profile/profile.page';
+import { ScoreboardPage } from './scoreboard/scoreboard.page';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'maps', component: MapsPage, canActivate: [AuthGuardService]},
   {path: 'dashboard', component: DashboardPage, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginPage},
+  {path: 'scoreboard', component: ScoreboardPage },
 ];
 
 @NgModule({
