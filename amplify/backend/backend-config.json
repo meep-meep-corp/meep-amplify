@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"cognito4679c8b1": {
+		"meepuid7694d9f": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
