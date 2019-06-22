@@ -4,7 +4,7 @@ enum VehicleStatus {
   OUT_OF_SERVICE
 }
 
-type Vehicules @model {
+type Vehicle @model {
   id: ID!
   name: String!
   description: String
@@ -14,7 +14,7 @@ type Vehicules @model {
   provider(id: ID!): Provider
 }
 
-type Providers @model {
+type Provider @model {
   id: ID!
   name: String!
   description: String
