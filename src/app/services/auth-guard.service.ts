@@ -9,7 +9,7 @@ import {AmplifyService} from 'aws-amplify-angular';
 export class AuthGuardService implements CanActivate {
 
   signedIn = false;
-  user: null;
+  user = null;
 
   constructor(public router: Router) {
   }

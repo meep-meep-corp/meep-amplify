@@ -25,8 +25,7 @@ const routes: Routes = [
   ],
   declarations: [ProfilePage],
   providers: [
-    ProfileService,
-    AmplifyService
+    ProfileService
   ]
 })
 export class ProfilePageModule {}

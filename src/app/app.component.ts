@@ -60,7 +60,7 @@ export class AppComponent {
         if (!authState.user) {
           this.authGuardService.user = null;
         } else {
-          this.authGuardService = authState.user;
+          this.authGuardService.user = authState.user;
         }
       });
   }
