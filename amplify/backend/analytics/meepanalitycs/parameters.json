@@ -1,0 +1,20 @@
+{
+    "appName": "meepanalitycs",
+    "roleName": "pinpointLambdaRolec35767fc",
+    "cloudWatchPolicyName": "cloudWatchPolicyc35767fc",
+    "pinpointPolicyName": "pinpointPolicyc35767fc",
+    "authPolicyName": "pinpoint_amplify_c35767fc",
+    "unauthPolicyName": "pinpoint_amplify_c35767fc",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

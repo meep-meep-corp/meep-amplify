@@ -1,6 +1,6 @@
 {
     "identityPoolName": "meepuid7694d9f_identitypool_d7694d9f",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "lambdaLogPolicy": "meepui_d7694d9f_lambda_log_policy",
     "openIdLambdaRoleName": "meepui_d7694d9f_openid_lambda_role",
     "openIdRolePolicy": "meepui_d7694d9f_openid_pass_role_policy",
