@@ -5,6 +5,8 @@ mutation CreateVehicules($input: CreateVehiculesInput!) {
     name
     description
     location
+    status
+    battery
   }
 }
 mutation UpdateVehicules($input: UpdateVehiculesInput!) {
@@ -13,6 +15,8 @@ mutation UpdateVehicules($input: UpdateVehiculesInput!) {
     name
     description
     location
+    status
+    battery
   }
 }
 mutation DeleteVehicules($input: DeleteVehiculesInput!) {
@@ -21,6 +25,8 @@ mutation DeleteVehicules($input: DeleteVehiculesInput!) {
     name
     description
     location
+    status
+    battery
   }
 }
 mutation CreateProviders($input: CreateProvidersInput!) {
@@ -42,5 +48,26 @@ mutation DeleteProviders($input: DeleteProvidersInput!) {
     id
     name
     description
+  }
+}
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    name
+    email
+  }
+}
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    name
+    email
+  }
+}
+mutation DeleteUser($input: DeleteUserInput!) {
+  deleteUser(input: $input) {
+    id
+    name
+    email
   }
 }

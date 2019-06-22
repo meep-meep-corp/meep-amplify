@@ -10,6 +10,8 @@ export type CreateVehiculesInput = {
   name: string;
   description?: string | null;
   location?: string | null;
+  status: string;
+  battery?: number | null;
 };
 
 export type UpdateVehiculesInput = {
@@ -17,6 +19,8 @@ export type UpdateVehiculesInput = {
   name?: string | null;
   description?: string | null;
   location?: string | null;
+  status?: string | null;
+  battery?: number | null;
 };
 
 export type DeleteVehiculesInput = {
@@ -39,11 +43,29 @@ export type DeleteProvidersInput = {
   id?: string | null;
 };
 
+export type CreateUserInput = {
+  id?: string | null;
+  name: string;
+  email?: string | null;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+};
+
+export type DeleteUserInput = {
+  id?: string | null;
+};
+
 export type ModelVehiculesFilterInput = {
   id?: ModelIDFilterInput | null;
   name?: ModelStringFilterInput | null;
   description?: ModelStringFilterInput | null;
   location?: ModelStringFilterInput | null;
+  status?: ModelStringFilterInput | null;
+  battery?: ModelIntFilterInput | null;
   and?: Array<ModelVehiculesFilterInput | null> | null;
   or?: Array<ModelVehiculesFilterInput | null> | null;
   not?: ModelVehiculesFilterInput | null;
@@ -75,6 +97,18 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null;
 };
 
+export type ModelIntFilterInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  contains?: number | null;
+  notContains?: number | null;
+  between?: Array<number | null> | null;
+};
+
 export type ModelProvidersFilterInput = {
   id?: ModelIDFilterInput | null;
   name?: ModelStringFilterInput | null;
@@ -84,12 +118,23 @@ export type ModelProvidersFilterInput = {
   not?: ModelProvidersFilterInput | null;
 };
 
+export type ModelUserFilterInput = {
+  id?: ModelIDFilterInput | null;
+  name?: ModelStringFilterInput | null;
+  email?: ModelStringFilterInput | null;
+  and?: Array<ModelUserFilterInput | null> | null;
+  or?: Array<ModelUserFilterInput | null> | null;
+  not?: ModelUserFilterInput | null;
+};
+
 export type CreateVehiculesMutation = {
   __typename: "Vehicules";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type UpdateVehiculesMutation = {
@@ -98,6 +143,8 @@ export type UpdateVehiculesMutation = {
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type DeleteVehiculesMutation = {
@@ -106,6 +153,8 @@ export type DeleteVehiculesMutation = {
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type CreateProvidersMutation = {
@@ -129,12 +178,35 @@ export type DeleteProvidersMutation = {
   description: string | null;
 };
 
+export type CreateUserMutation = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+export type UpdateUserMutation = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+export type DeleteUserMutation = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
 export type GetVehiculesQuery = {
   __typename: "Vehicules";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type ListVehiculessQuery = {
@@ -145,6 +217,8 @@ export type ListVehiculessQuery = {
     name: string;
     description: string | null;
     location: string | null;
+    status: string;
+    battery: number | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -167,12 +241,32 @@ export type ListProviderssQuery = {
   nextToken: string | null;
 };
 
+export type GetUserQuery = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+export type ListUsersQuery = {
+  __typename: "ModelUserConnection";
+  items: Array<{
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string | null;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type OnCreateVehiculesSubscription = {
   __typename: "Vehicules";
   id: string;
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type OnUpdateVehiculesSubscription = {
@@ -181,6 +275,8 @@ export type OnUpdateVehiculesSubscription = {
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type OnDeleteVehiculesSubscription = {
@@ -189,6 +285,8 @@ export type OnDeleteVehiculesSubscription = {
   name: string;
   description: string | null;
   location: string | null;
+  status: string;
+  battery: number | null;
 };
 
 export type OnCreateProvidersSubscription = {
@@ -212,6 +310,27 @@ export type OnDeleteProvidersSubscription = {
   description: string | null;
 };
 
+export type OnCreateUserSubscription = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+export type OnUpdateUserSubscription = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+export type OnDeleteUserSubscription = {
+  __typename: "User";
+  id: string;
+  name: string;
+  email: string | null;
+};
+
 @Injectable({
   providedIn: "root"
 })
@@ -226,6 +345,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -246,6 +367,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -266,6 +389,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -333,6 +458,57 @@ export class APIService {
     )) as any;
     return <DeleteProvidersMutation>response.data.deleteProviders;
   }
+  async CreateUser(input: CreateUserInput): Promise<CreateUserMutation> {
+    const statement = `mutation CreateUser($input: CreateUserInput!) {
+        createUser(input: $input) {
+          __typename
+          id
+          name
+          email
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateUserMutation>response.data.createUser;
+  }
+  async UpdateUser(input: UpdateUserInput): Promise<UpdateUserMutation> {
+    const statement = `mutation UpdateUser($input: UpdateUserInput!) {
+        updateUser(input: $input) {
+          __typename
+          id
+          name
+          email
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateUserMutation>response.data.updateUser;
+  }
+  async DeleteUser(input: DeleteUserInput): Promise<DeleteUserMutation> {
+    const statement = `mutation DeleteUser($input: DeleteUserInput!) {
+        deleteUser(input: $input) {
+          __typename
+          id
+          name
+          email
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteUserMutation>response.data.deleteUser;
+  }
   async GetVehicules(id: string): Promise<GetVehiculesQuery> {
     const statement = `query GetVehicules($id: ID!) {
         getVehicules(id: $id) {
@@ -341,6 +517,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -365,6 +543,8 @@ export class APIService {
             name
             description
             location
+            status
+            battery
           }
           nextToken
         }
@@ -433,6 +613,55 @@ export class APIService {
     )) as any;
     return <ListProviderssQuery>response.data.listProviderss;
   }
+  async GetUser(id: string): Promise<GetUserQuery> {
+    const statement = `query GetUser($id: ID!) {
+        getUser(id: $id) {
+          __typename
+          id
+          name
+          email
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetUserQuery>response.data.getUser;
+  }
+  async ListUsers(
+    filter?: ModelUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListUsersQuery> {
+    const statement = `query ListUsers($filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
+        listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            email
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListUsersQuery>response.data.listUsers;
+  }
   OnCreateVehiculesListener: Observable<
     OnCreateVehiculesSubscription
   > = API.graphql(
@@ -444,6 +673,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`
     )
@@ -460,6 +691,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`
     )
@@ -476,6 +709,8 @@ export class APIService {
           name
           description
           location
+          status
+          battery
         }
       }`
     )
@@ -525,4 +760,43 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteProvidersSubscription>;
+
+  OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateUser {
+        onCreateUser {
+          __typename
+          id
+          name
+          email
+        }
+      }`
+    )
+  ) as Observable<OnCreateUserSubscription>;
+
+  OnUpdateUserListener: Observable<OnUpdateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateUser {
+        onUpdateUser {
+          __typename
+          id
+          name
+          email
+        }
+      }`
+    )
+  ) as Observable<OnUpdateUserSubscription>;
+
+  OnDeleteUserListener: Observable<OnDeleteUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteUser {
+        onDeleteUser {
+          __typename
+          id
+          name
+          email
+        }
+      }`
+    )
+  ) as Observable<OnDeleteUserSubscription>;
 }
