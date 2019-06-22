@@ -1,10 +1,17 @@
+enum VehicleStatus {
+  LOCKED
+  AVAILABLE
+  OUT_OF_SERVICE
+}
+
 type Vehicules @model {
   id: ID!
   name: String!
   description: String
   location: String
-  status: String!
+  status: VehicleStatus!
   battery: Int
+  provider(id: ID!): Provider
 }
 
 type Providers @model {
@@ -17,4 +24,15 @@ type User @model {
   id: ID!
   name: String!
   email: String
+}
+
+type Trip @model {
+  id: ID!
+  user(id: ID!): User
+  vehicle(id: ID!): Vehicle
+  cost: Float!
+  startCoords: String
+  endCoords: String
+  startTime: String
+  endTime: String
 }
