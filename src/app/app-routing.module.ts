@@ -19,7 +19,6 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule',
     canActivate: [AuthGuardService]
   },
-  { path: 'qr', loadChildren: './qr/qr.module#QrPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule', canActivate: [AuthGuardService] },
   { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' , canActivate: [AuthGuardService]},
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule', canActivate: [AuthGuardService] },

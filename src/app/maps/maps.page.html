@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>maps</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Maps
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div id="map_canvas"></div>  
+    <div id="map_canvas"></div>
+    <ion-card *ngIf="markerDetails">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Type</p>
+          </ion-col>
+          <ion-col>
+            <p>{{marker.type}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>Battery</p>
+          </ion-col>
+          <ion-col>
+            <p>{{marker.battery}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>Status</p>
+          </ion-col>
+          <ion-col>
+            <p>{{marker.status}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>Provider</p>
+          </ion-col>
+          <ion-col>
+            <p>{{marker.provider}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-button *ngIf="markerDetails" expand="block" (click)="scan()" color="primary">Scan</ion-button>    
 </ion-content>
