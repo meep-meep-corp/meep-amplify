@@ -51,7 +51,7 @@ export class AppComponent {
           this.router.navigateByUrl('/login');
         } else {
           this.authGuardService.user = authState.user;
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/dashboard');
         }
       });
   }
