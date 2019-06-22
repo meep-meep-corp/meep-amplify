@@ -6,18 +6,8 @@ import {LoginPage} from './login/login.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule',
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule',
-    canActivate: [AuthGuardService]
   },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule', canActivate: [AuthGuardService] },
   { path: 'maps', loadChildren: './maps/maps.module#MapsPageModule' , canActivate: [AuthGuardService]},
