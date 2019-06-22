@@ -28,6 +28,7 @@ import {ChatbotPage} from './chatbot/chatbot.page';
     LoginPage,
     ProfilePage,
     MapsPage,
+    DashboardPage,
     ChatbotPage
   ],
   entryComponents: [],
