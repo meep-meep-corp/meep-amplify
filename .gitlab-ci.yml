@@ -1,0 +1,24 @@
+before_script: 
+  - npm install -g ionic cordova  
+  - npm install
+
+image: node
+
+stages:
+  - validation
+  - build
+
+lint:
+  stage: validation  
+  script:
+    - npm run lint
+
+android:
+  stage: build
+  script:
+    - npm run build:android
+
+ios:
+  stage: build
+  script:
+    - npm run build:ios
