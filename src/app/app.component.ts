@@ -22,6 +22,11 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'QR Code',
+      url: '/qr',
+      icon: 'code'
     }
   ];
 
