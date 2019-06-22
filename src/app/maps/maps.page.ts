@@ -17,6 +17,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LockService } from '../services/lock.service';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { APIService } from '../API.service';
+import { String } from 'aws-sdk/clients/redshift';
 
 @Component({
   selector: 'app-maps',
@@ -41,11 +42,46 @@ export class MapsPage implements OnInit {
 
     this.geolocation.getCurrentPosition().then((resp) => {
       this.loadMap(resp.coords.latitude, resp.coords.longitude);
+      this.api.ListVehicles().then(data => {
+        console.log(data);
+        let vehicles = data.items;
+        let POINTS: BaseArrayClass<any> = new BaseArrayClass<any>();
+  
+        vehicles.forEach(element => {
+          let pos: String[] = element.location.split(',')
+          POINTS.push({
+            position: { lat: pos[0], lng: pos[1] },
+            iconData: {
+              type: element.type,
+              battery: element.battery,
+              status: element.status,
+              provider: element.provider.name,
+              description: element.description,
+              name: element.name,
+              url: "https://www.pinclipart.com/picdir/middle/104-1044515_economy-car-svg-png-icon-free-download-538848.png",
+              size: {
+                width: 24,
+                height: 24
+              }
+            } 
+          })
+        });
+  
+        POINTS.forEach((data: any) => {
+          data.disableAutoPan = true;
+          let marker: Marker = this.map.addMarkerSync(data);
+          marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
+            let marker: Marker = <Marker>params[1];
+            let customInfo: any = marker.get('customInfo');
+            let iconData: any = marker.get('iconData');
+            this.markerService.dispatchEvent(iconData);
+          });
+          marker.setIcon(marker.get('iconData'));
+        });
+      });
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-    this.api.ListVehicles().then(data => console.log(data));
   }
 
   loadMap(lat: number, lon: number) {
@@ -60,40 +96,34 @@ export class MapsPage implements OnInit {
       }
     });
 
-    let POINTS: BaseArrayClass<any> = new BaseArrayClass<any>([
-      {
-        position: { lat: 47.367773400000004, lng: 8.5399146 },
-        iconData: {
-          type: 'Scooter',
-          battery: '80%',
-          status: 'Available',
-          provider: 'MeepMeep',
-          url: "https://www.pinclipart.com/picdir/middle/104-1044515_economy-car-svg-png-icon-free-download-538848.png",
-          size: {
-            width: 24,
-            height: 24
-          }
-        } 
-      },
-    ]);
+    // let POINTS: BaseArrayClass<any> = new BaseArrayClass<any>([
+    //   {
+    //     position: { lat: 47.367773400000004, lng: 8.5399146 },
+    //     iconData: {
+    //       type: 'Scooter',
+    //       battery: '80%',
+    //       status: 'Available',
+    //       provider: 'MeepMeep',
+    //       url: "https://www.pinclipart.com/picdir/middle/104-1044515_economy-car-svg-png-icon-free-download-538848.png",
+    //       size: {
+    //         width: 24,
+    //         height: 24
+    //       }
+    //     } 
+    //   },
+    // ]);
 
-    POINTS.forEach((data: any) => {
-      data.disableAutoPan = true;
-      let marker: Marker = this.map.addMarkerSync(data);
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
-        let marker: Marker = <Marker>params[1];
-        let customInfo: any = marker.get('customInfo');
-        let iconData: any = marker.get('iconData');
-        this.markerService.dispatchEvent(iconData);
-      });
-      // marker.on(GoogleMapsEvent.INFO_CLICK).subscribe((params) => {
-      //   let marker: Marker = <Marker>params[1];
-      //   let customInfo: any = marker.get('customInfo');
-      //   let iconData: any = marker.get('iconData');
-      //   this.markerService.dispatchEvent(iconData);        
-      // });
-      marker.setIcon(marker.get('iconData'));
-    });
+    // POINTS.forEach((data: any) => {
+    //   data.disableAutoPan = true;
+    //   let marker: Marker = this.map.addMarkerSync(data);
+    //   marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
+    //     let marker: Marker = <Marker>params[1];
+    //     let customInfo: any = marker.get('customInfo');
+    //     let iconData: any = marker.get('iconData');
+    //     this.markerService.dispatchEvent(iconData);
+    //   });
+    //   marker.setIcon(marker.get('iconData'));
+    // });
   }
 
   scan() {
