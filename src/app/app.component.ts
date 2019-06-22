@@ -33,6 +33,11 @@ export class AppComponent {
       url: '/profile',
       icon: 'contact'
     },
+    {
+      title: 'Maps',
+      url: '/maps',
+      icon: 'map'
+    }
   ];
 
   constructor(
