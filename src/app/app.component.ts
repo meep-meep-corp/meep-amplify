@@ -24,11 +24,6 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'QR Code',
-      url: '/qr',
-      icon: 'code'
-    },
-    {
       title: 'Profile',
       url: '/profile',
       icon: 'contact'
