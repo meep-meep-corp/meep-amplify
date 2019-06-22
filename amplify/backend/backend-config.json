@@ -25,5 +25,12 @@
 				"securityType": "API_KEY"
 			}
 		}
+	},
+	"interactions": {
+		"lex047929e5": {
+			"service": "Lex",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
 	}
 }
