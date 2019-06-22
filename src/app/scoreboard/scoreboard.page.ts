@@ -8,22 +8,23 @@ import { ScoreboardService } from '../services/scoreboard.service';
 })
 export class ScoreboardPage implements OnInit {
 
-  scoreboard: any = [
-    {
-      name: 'Test',
-      score: 100
-    },
-    {
-      name: 'Test',
-      score: 200
-    },
-  ];
+  scoreboard = [];
 
   constructor(private scoreboardService: ScoreboardService) { }
 
   ngOnInit() {
     this.scoreboardService.getScoreboard().subscribe(data => {
       console.log(data);
+      let rankings = data.ranking;
+      let scores = [];
+      rankings.forEach(element => {
+        scores.push({
+          name: element[0],
+          score: element[1],
+        })
+      });
+
+      this.scoreboard = scores;
     })
   }
 

@@ -8,6 +8,6 @@ export class ScoreboardService {
     constructor(private httpClient: HttpClient) {}
 
     getScoreboard(): Observable<any> {
-        return this.httpClient.get(this.APIURL + '/scoreboard');
+        return this.httpClient.get(this.APIURL + '/trip/ranking');
     }
 }
