@@ -70,6 +70,17 @@ mutation CreateUser($input: CreateUserInput!) {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateUser($input: UpdateUserInput!) {
@@ -77,6 +88,17 @@ mutation UpdateUser($input: UpdateUserInput!) {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteUser($input: DeleteUserInput!) {
@@ -84,6 +106,17 @@ mutation DeleteUser($input: DeleteUserInput!) {
     id
     name
     email
+    trips {
+      items {
+        id
+        cost
+        startCoords
+        endCoords
+        startTime
+        endTime
+      }
+      nextToken
+    }
   }
 }
 mutation CreateTrip($input: CreateTripInput!) {
@@ -93,6 +126,9 @@ mutation CreateTrip($input: CreateTripInput!) {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
@@ -121,6 +157,9 @@ mutation UpdateTrip($input: UpdateTripInput!) {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
@@ -149,6 +188,9 @@ mutation DeleteTrip($input: DeleteTripInput!) {
       id
       name
       email
+      trips {
+        nextToken
+      }
     }
     vehicle {
       id
