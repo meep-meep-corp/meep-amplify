@@ -22,8 +22,8 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     if (this.auth.user) {
       this.api.UserByEmail(this.auth.user.attributes.email).then(data => {
+        console.log(data);
         this.eventSource = this.createEvents(data.items[0].trips['items']);
-        console.log(this.eventSource)
       });
     }
   }

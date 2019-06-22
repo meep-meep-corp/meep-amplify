@@ -1946,6 +1946,15 @@ export class APIService {
             name
             email
             trips {
+              items {
+                __typename
+                id
+                cost
+                startCoords
+                endCoords
+                startTime
+                endTime
+              }
               __typename
               nextToken
             }
