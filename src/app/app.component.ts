@@ -28,6 +28,10 @@ export class AppComponent {
       url: '/qr',
       icon: 'code'
     }
+      title: 'Profile',
+      url: '/profile',
+      icon: 'contact'
+    },
   ];
 
   constructor(
