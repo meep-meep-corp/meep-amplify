@@ -34,6 +34,11 @@ export class AppComponent {
       url: '/scoreboard',
       icon: 'medal'
     },
+    {
+      title: 'Chatbot',
+      url: '/chatbot',
+      icon: 'chatboxes'
+    },
   ];
 
   constructor(

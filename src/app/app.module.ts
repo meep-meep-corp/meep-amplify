@@ -19,11 +19,14 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import {MarkerEventService} from '../services/marker.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {ProfileService} from './services/profile.service';
-
 import { HttpClientModule } from '@angular/common/http';
 import { LockService } from './services/lock.service';
+<<<<<<< HEAD
 import { ScoreboardPage } from './scoreboard/scoreboard.page';
 import { ScoreboardService } from './services/scoreboard.service';
+=======
+import {ChatbotPage} from './chatbot/chatbot.page';
+>>>>>>> d6991f0be5400eb60f4619e8c82da98ce780e4f2
 
 @NgModule({
   declarations: [AppComponent,
@@ -31,7 +34,11 @@ import { ScoreboardService } from './services/scoreboard.service';
     ProfilePage,
     MapsPage,
     DashboardPage,
+<<<<<<< HEAD
     ScoreboardPage,
+=======
+    ChatbotPage
+>>>>>>> d6991f0be5400eb60f4619e8c82da98ce780e4f2
   ],
   entryComponents: [],
   imports: [
