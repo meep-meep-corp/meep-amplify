@@ -1,50 +1,65 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateVehicules {
-  onCreateVehicules {
+subscription OnCreateVehicle {
+  onCreateVehicle {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-subscription OnUpdateVehicules {
-  onUpdateVehicules {
+subscription OnUpdateVehicle {
+  onUpdateVehicle {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-subscription OnDeleteVehicules {
-  onDeleteVehicules {
+subscription OnDeleteVehicle {
+  onDeleteVehicle {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-subscription OnCreateProviders {
-  onCreateProviders {
+subscription OnCreateProvider {
+  onCreateProvider {
     id
     name
     description
   }
 }
-subscription OnUpdateProviders {
-  onUpdateProviders {
+subscription OnUpdateProvider {
+  onUpdateProvider {
     id
     name
     description
   }
 }
-subscription OnDeleteProviders {
-  onDeleteProviders {
+subscription OnDeleteProvider {
+  onDeleteProvider {
     id
     name
     description
@@ -69,5 +84,89 @@ subscription OnDeleteUser {
     id
     name
     email
+  }
+}
+subscription OnCreateTrip {
+  onCreateTrip {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
+  }
+}
+subscription OnUpdateTrip {
+  onUpdateTrip {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
+  }
+}
+subscription OnDeleteTrip {
+  onDeleteTrip {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
   }
 }

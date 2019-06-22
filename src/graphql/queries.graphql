@@ -1,20 +1,25 @@
 # this is an auto generated file. This will be overwritten
-query GetVehicules($id: ID!) {
-  getVehicules(id: $id) {
+query GetVehicle($id: ID!) {
+  getVehicle(id: $id) {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-query ListVehiculess(
-  $filter: ModelVehiculesFilterInput
+query ListVehicles(
+  $filter: ModelVehicleFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listVehiculess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listVehicles(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
@@ -22,23 +27,28 @@ query ListVehiculess(
       location
       status
       battery
+      provider {
+        id
+        name
+        description
+      }
     }
     nextToken
   }
 }
-query GetProviders($id: ID!) {
-  getProviders(id: $id) {
+query GetProvider($id: ID!) {
+  getProvider(id: $id) {
     id
     name
     description
   }
 }
-query ListProviderss(
-  $filter: ModelProvidersFilterInput
+query ListProviders(
+  $filter: ModelProviderFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listProviderss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listProviders(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
@@ -64,6 +74,64 @@ query ListUsers(
       id
       name
       email
+    }
+    nextToken
+  }
+}
+query GetTrip($id: ID!) {
+  getTrip(id: $id) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
+  }
+}
+query ListTrips(
+  $filter: ModelTripFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTrips(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      user {
+        id
+        name
+        email
+      }
+      vehicle {
+        id
+        name
+        description
+        location
+        status
+        battery
+      }
+      cost
+      startCoords
+      endCoords
+      startTime
+      endTime
     }
     nextToken
   }

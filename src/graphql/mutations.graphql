@@ -1,50 +1,65 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateVehicules($input: CreateVehiculesInput!) {
-  createVehicules(input: $input) {
+mutation CreateVehicle($input: CreateVehicleInput!) {
+  createVehicle(input: $input) {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-mutation UpdateVehicules($input: UpdateVehiculesInput!) {
-  updateVehicules(input: $input) {
+mutation UpdateVehicle($input: UpdateVehicleInput!) {
+  updateVehicle(input: $input) {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-mutation DeleteVehicules($input: DeleteVehiculesInput!) {
-  deleteVehicules(input: $input) {
+mutation DeleteVehicle($input: DeleteVehicleInput!) {
+  deleteVehicle(input: $input) {
     id
     name
     description
     location
     status
     battery
+    provider {
+      id
+      name
+      description
+    }
   }
 }
-mutation CreateProviders($input: CreateProvidersInput!) {
-  createProviders(input: $input) {
+mutation CreateProvider($input: CreateProviderInput!) {
+  createProvider(input: $input) {
     id
     name
     description
   }
 }
-mutation UpdateProviders($input: UpdateProvidersInput!) {
-  updateProviders(input: $input) {
+mutation UpdateProvider($input: UpdateProviderInput!) {
+  updateProvider(input: $input) {
     id
     name
     description
   }
 }
-mutation DeleteProviders($input: DeleteProvidersInput!) {
-  deleteProviders(input: $input) {
+mutation DeleteProvider($input: DeleteProviderInput!) {
+  deleteProvider(input: $input) {
     id
     name
     description
@@ -69,5 +84,89 @@ mutation DeleteUser($input: DeleteUserInput!) {
     id
     name
     email
+  }
+}
+mutation CreateTrip($input: CreateTripInput!) {
+  createTrip(input: $input) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
+  }
+}
+mutation UpdateTrip($input: UpdateTripInput!) {
+  updateTrip(input: $input) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
+  }
+}
+mutation DeleteTrip($input: DeleteTripInput!) {
+  deleteTrip(input: $input) {
+    id
+    user {
+      id
+      name
+      email
+    }
+    vehicle {
+      id
+      name
+      description
+      location
+      status
+      battery
+      provider {
+        id
+        name
+        description
+      }
+    }
+    cost
+    startCoords
+    endCoords
+    startTime
+    endTime
   }
 }
