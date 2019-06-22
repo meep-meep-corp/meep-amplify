@@ -5,7 +5,12 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"analytics": {},
+	"analytics": {
+		"meepui": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	},
 	"hosting": {
 		"S3AndCloudFront": {
 			"service": "S3AndCloudFront",
