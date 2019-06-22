@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileService} from '../../services/profile.service';
 import {APIService} from '../API.service';
-import {AmplifyService} from 'aws-amplify-angular';
 import {AuthGuardService} from '../services/auth-guard.service';
 
 @Component({

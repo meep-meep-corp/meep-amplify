@@ -4,9 +4,7 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AmplifyService} from 'aws-amplify-angular';
-import awsconfig from '../aws-exports';
 import {Router} from '@angular/router';
-import {auth} from 'aws-amplify-angular/dist/src/assets/data-test-attributes';
 import {AuthGuardService} from './services/auth-guard.service';
 
 @Component({
@@ -44,14 +42,19 @@ export class AppComponent {
     this.initializeApp();
     this.amplifyService.authStateChange$
       .subscribe(authState => {
+        console.log('authStateChange$');
         console.log(authState);
-        this.authGuardService.signedIn = authState.state === 'signedIn';
-        if (authState.user === null) {
+
+        if (authState.state === 'signedIn') {
+          this.authGuardService.signedIn = true;
+          this.authGuardService.user = authState.user;
+          if (this.router.url === '/login') {
+            this.router.navigateByUrl('/dashboard');
+          }
+        } else {
+          this.authGuardService.signedIn = false;
           this.authGuardService.user = null;
           this.router.navigateByUrl('/login');
-        } else {
-          this.authGuardService.user = authState.user;
-          this.router.navigateByUrl('/dashboard');
         }
       });
   }
