@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AmplifyAngularModule, AmplifyIonicModule, AmplifyService} from 'aws-amplify-angular';
 import {APIService} from './API.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,9 @@ import {APIService} from './API.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AmplifyService,
-    APIService
+    APIService,
+    AuthGuardService
+
   ],
   bootstrap: [AppComponent]
 })
