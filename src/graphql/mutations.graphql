@@ -1,0 +1,46 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateVehicules($input: CreateVehiculesInput!) {
+  createVehicules(input: $input) {
+    id
+    name
+    description
+    location
+  }
+}
+mutation UpdateVehicules($input: UpdateVehiculesInput!) {
+  updateVehicules(input: $input) {
+    id
+    name
+    description
+    location
+  }
+}
+mutation DeleteVehicules($input: DeleteVehiculesInput!) {
+  deleteVehicules(input: $input) {
+    id
+    name
+    description
+    location
+  }
+}
+mutation CreateProviders($input: CreateProvidersInput!) {
+  createProviders(input: $input) {
+    id
+    name
+    description
+  }
+}
+mutation UpdateProviders($input: UpdateProvidersInput!) {
+  updateProviders(input: $input) {
+    id
+    name
+    description
+  }
+}
+mutation DeleteProviders($input: DeleteProvidersInput!) {
+  deleteProviders(input: $input) {
+    id
+    name
+    description
+  }
+}

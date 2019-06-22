@@ -1,0 +1,45 @@
+# this is an auto generated file. This will be overwritten
+query GetVehicules($id: ID!) {
+  getVehicules(id: $id) {
+    id
+    name
+    description
+    location
+  }
+}
+query ListVehiculess(
+  $filter: ModelVehiculesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listVehiculess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      location
+    }
+    nextToken
+  }
+}
+query GetProviders($id: ID!) {
+  getProviders(id: $id) {
+    id
+    name
+    description
+  }
+}
+query ListProviderss(
+  $filter: ModelProvidersFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProviderss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+    }
+    nextToken
+  }
+}

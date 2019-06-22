@@ -1,0 +1,4 @@
+{
+    "AppSyncApiName": "meepamplify",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST"
+}
