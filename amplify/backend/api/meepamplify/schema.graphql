@@ -20,7 +20,7 @@ type Provider @model {
   description: String
 }
 
-type User @model @key(name: "ByEmail", fields: ["email"]) {
+type User @model @key(name: "ByEmail", fields: ["email"], queryField: "userByEmail") {
   id: ID!
   name: String!
   email: String!

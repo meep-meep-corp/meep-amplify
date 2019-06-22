@@ -499,6 +499,17 @@ export type ListTripsQuery = {
   nextToken: string | null;
 };
 
+export type UserByEmailQuery = {
+  __typename: "ModelUserConnection";
+  items: Array<{
+    __typename: "User";
+    id: string;
+    name: string;
+    email: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type OnCreateVehicleSubscription = {
   __typename: "Vehicle";
   id: string;
@@ -1256,6 +1267,42 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListTripsQuery>response.data.listTrips;
+  }
+  async UserByEmail(
+    email?: string,
+    filter?: ModelUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<UserByEmailQuery> {
+    const statement = `query UserByEmail($email: String, $filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
+        userByEmail(email: $email, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            email
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (email) {
+      gqlAPIServiceArguments.email = email;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UserByEmailQuery>response.data.userByEmail;
   }
   OnCreateVehicleListener: Observable<
     OnCreateVehicleSubscription
