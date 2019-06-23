@@ -9,9 +9,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <amplify-interactions
-      bot="BookTrip_prod"
-      [voiceEnabled]="true"
-      [textEnabled]="true">
+  <amplify-interactions framework="Ionic"
+                        bot="BookTrip_prod"
+                        [voiceEnabled]="true"
+                        [voiceConfig]="{silenceDetectionConfig: {time: 1000,amplitude: 0.2}}"
+                        [conversationModeOn]="true"
+                        [textEnabled]="true">
   </amplify-interactions>
 </ion-content>
