@@ -11,21 +11,28 @@
 
 <ion-content>
   <ion-grid class="grid">
-    <ion-row justify-content-center align-items-center>
-      <ion-thumbnail>
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-      </ion-thumbnail>
-    </ion-row>
-    <ion-row *ngFor="let item of items">
-      <ion-col class="right">
-        <div>{{item.property}}</div>
-      </ion-col>
-      <ion-col>
-        <div>{{item.value}}</div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <amplify-authenticator class="full-width"></amplify-authenticator>      
-    </ion-row>
+    <ion-card>    
+      <ion-row justify-content-center align-items-center>
+        <ion-thumbnail>
+          <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png">
+        </ion-thumbnail>
+      </ion-row>
+    </ion-card>
+    <ion-card>
+      <ion-row *ngFor="let item of items">
+        <ion-col class="right">
+          <div>{{item.property}}</div>
+        </ion-col>
+        <ion-col>
+          <div>{{item.value}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </ion-grid>
 </ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+      <amplify-authenticator class="full-width"></amplify-authenticator>          
+  </ion-toolbar>
+</ion-footer>

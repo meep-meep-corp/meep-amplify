@@ -11,33 +11,37 @@
 
 <ion-content>
   <ion-grid class="grid">
-    <ion-row>
-      <ion-col align-items-left>
-        <ion-thumbnail>
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-      </ion-col>
-      <ion-col>
-        <ion-button float-right color="success">Green Footprint</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-toolbar color="primary">
-          <ion-title>{{viewTitle}}</ion-title>
-      </ion-toolbar>
-      <calendar class="full"
-        [eventSource]="eventSource" 
-        [calendarMode]="calendar.mode" 
-        [currentDate]="calendar.currentDate"
-        (onEventSelected)="onEventSelected($event)"
-        (onTitleChanged)="onViewTitleChanged($event)"
-        (onTimeSelected)="onTimeSelected($event)" 
-        startHour="6"
-        endHour="20"
-        step="30"
-        startingDayWeek="1">
-      </calendar>
-    </ion-row>
+    <ion-card>
+      <ion-row>
+        <ion-col align-items-left>
+          <ion-thumbnail>
+            <img src="https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col>
+          <ion-button float-right color="success">Green Footprint</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-card>
+      <ion-row>
+        <ion-toolbar color="success">
+            <ion-title>{{viewTitle}}</ion-title>
+        </ion-toolbar>
+        <calendar class="full"
+          [eventSource]="eventSource" 
+          [calendarMode]="calendar.mode" 
+          [currentDate]="calendar.currentDate"
+          (onEventSelected)="onEventSelected($event)"
+          (onTitleChanged)="onViewTitleChanged($event)"
+          (onTimeSelected)="onTimeSelected($event)" 
+          startHour="6"
+          endHour="20"
+          step="30"
+          startingDayWeek="1">
+        </calendar>
+      </ion-row>
+    </ion-card>
     <ion-row *ngIf="eventDetails">
       <ion-card class="full">
         <ion-grid>

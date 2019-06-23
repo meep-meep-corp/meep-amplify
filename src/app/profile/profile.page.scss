@@ -9,3 +9,13 @@
 .full-width {
     width: 100%;
 }
+
+:host ::ng-deep .amplify-authenticator {
+    width: 100% !important;
+}
+
+:host ::ng-deep div.amplify-greeting {
+    a.amplify-greeting-sign-out {
+        text-align: right;
+    }
+}

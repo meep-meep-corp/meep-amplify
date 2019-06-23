@@ -10,6 +10,8 @@
 </ion-header>
 
 <ion-content>
+  <ion-img class="trophy" 
+  [src]="trophyUrl"></ion-img>
   <ion-card>
     <ion-row *ngFor="let item of scoreboard">
       <ion-col><p>{{item.name}}</p></ion-col>

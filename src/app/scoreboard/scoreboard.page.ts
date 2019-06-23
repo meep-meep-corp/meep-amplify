@@ -7,7 +7,7 @@ import { ScoreboardService } from '../services/scoreboard.service';
   styleUrls: ['./scoreboard.page.scss'],
 })
 export class ScoreboardPage implements OnInit {
-
+  trophyUrl = "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-5-512.png";
   scoreboard = [];
 
   constructor(private scoreboardService: ScoreboardService) { }
