@@ -4,14 +4,16 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class LockService {
-    APIURL = "https://ecngod5ft1.execute-api.eu-central-1.amazonaws.com/v1"
+    APIURL = "https://r10un8lg3b.execute-api.us-east-1.amazonaws.com/v1"
     constructor(private http: HttpClient) {}
 
-    lock(userid: string): Observable<any> {
-        return this.http.post(this.APIURL + '/vehicle/lock/scooter:tier:2412', { user: userid });
+    lock(userid: string, vehicleId: string, type: string = 'scooter', provider: string = 'mobility'): Observable<any> {
+        console.log(vehicleId);
+        return this.http.post(this.APIURL + '/vehicle/lock/' + type + ':' + provider + ':' + vehicleId, { user: userid });
     }
 
-    unlock(userid: string): Observable<any> {
-        return this.http.post(this.APIURL + '/vehicle/unlock/scooter:tier:2412', { user: userid });
+    unlock(userid: string, vehicleId: string, type: string = 'scooter', provider: string = 'mobility'): Observable<any> {
+        console.log(vehicleId);
+        return this.http.post(this.APIURL + '/vehicle/unlock/' + type + ':' + provider + ':' + vehicleId, { user: userid });
     }
 }

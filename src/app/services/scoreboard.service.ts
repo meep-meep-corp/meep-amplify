@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ScoreboardService {
-    APIURL = "https://ecngod5ft1.execute-api.eu-central-1.amazonaws.com/v1"
+    APIURL = "https://r10un8lg3b.execute-api.us-east-1.amazonaws.com/v1"
     constructor(private httpClient: HttpClient) {}
 
     getScoreboard(): Observable<any> {

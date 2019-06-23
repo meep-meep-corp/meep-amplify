@@ -52,13 +52,14 @@ export class MapsPage implements OnInit {
           POINTS.push({
             position: { lat: pos[0], lng: pos[1] },
             iconData: {
+              id: element.id,
               type: element.type,
               battery: element.battery,
               status: element.status,
               provider: element.provider.name,
               description: element.description,
               name: element.name,
-              url: "https://www.pinclipart.com/picdir/middle/104-1044515_economy-car-svg-png-icon-free-download-538848.png",
+              url: element.url,
               size: {
                 width: 24,
                 height: 24
@@ -100,6 +101,9 @@ export class MapsPage implements OnInit {
   scan() {
     BarcodeScanner.scan().then((barcodeData) => {
       // Success! Barcode data is here
+      this.platform.backButton.subscribe(() => {
+        return;
+      });
       this.presentPrompt();
     }, (err) => {
       // An error occurred
@@ -118,7 +122,7 @@ export class MapsPage implements OnInit {
             if (this.auth.user) {
               this.api.UserByEmail(this.auth.user.attributes.email).then((data) => {
                 console.log(data);
-                this.lockService.lock(data.items[0].id).subscribe(() => console.log('locked'), err => console.log(err));
+                this.lockService.unlock(data.items[0].id, this.marker.id).subscribe(() => console.log('locked'), err => console.log(err));
               });
             }
           }
@@ -140,7 +144,7 @@ export class MapsPage implements OnInit {
       if (this.auth.user) {
         this.api.UserByEmail(this.auth.user.attributes.email).then((data) => {
           console.log(data);
-          this.lockService.unlock(data.items[0].id).subscribe(() => console.log('locked'), err => console.log(err));
+          this.lockService.lock(data.items[0].id, this.marker.id).subscribe(() => console.log('locked'), err => console.log(err));
         });
       }
     }, (err) => {
