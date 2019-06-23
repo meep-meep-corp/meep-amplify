@@ -95,35 +95,6 @@ export class MapsPage implements OnInit {
         tilt: 30
       }
     });
-
-    // let POINTS: BaseArrayClass<any> = new BaseArrayClass<any>([
-    //   {
-    //     position: { lat: 47.367773400000004, lng: 8.5399146 },
-    //     iconData: {
-    //       type: 'Scooter',
-    //       battery: '80%',
-    //       status: 'Available',
-    //       provider: 'MeepMeep',
-    //       url: "https://www.pinclipart.com/picdir/middle/104-1044515_economy-car-svg-png-icon-free-download-538848.png",
-    //       size: {
-    //         width: 24,
-    //         height: 24
-    //       }
-    //     } 
-    //   },
-    // ]);
-
-    // POINTS.forEach((data: any) => {
-    //   data.disableAutoPan = true;
-    //   let marker: Marker = this.map.addMarkerSync(data);
-    //   marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe((params) => {
-    //     let marker: Marker = <Marker>params[1];
-    //     let customInfo: any = marker.get('customInfo');
-    //     let iconData: any = marker.get('iconData');
-    //     this.markerService.dispatchEvent(iconData);
-    //   });
-    //   marker.setIcon(marker.get('iconData'));
-    // });
   }
 
   scan() {
@@ -133,7 +104,6 @@ export class MapsPage implements OnInit {
     }, (err) => {
       // An error occurred
       console.log('error');
-      this.presentPrompt();
     });
   }
 
