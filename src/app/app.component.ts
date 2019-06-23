@@ -39,6 +39,11 @@ export class AppComponent {
       url: '/chatbot',
       icon: 'chatboxes'
     },
+    {
+      title: 'Invite Friends',
+      url: '/invite',
+      icon: 'person'
+    },
   ];
 
   constructor(

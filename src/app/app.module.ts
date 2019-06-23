@@ -24,6 +24,7 @@ import { LockService } from './services/lock.service';
 import { ScoreboardPage } from './scoreboard/scoreboard.page';
 import { ScoreboardService } from './services/scoreboard.service';
 import {ChatbotPage} from './chatbot/chatbot.page';
+import { InvitePage } from './invite/invite.page';
 
 @NgModule({
   declarations: [AppComponent,
@@ -32,7 +33,8 @@ import {ChatbotPage} from './chatbot/chatbot.page';
     MapsPage,
     DashboardPage,
     ScoreboardPage,
-    ChatbotPage
+    ChatbotPage,
+    InvitePage,
   ],
   entryComponents: [],
   imports: [

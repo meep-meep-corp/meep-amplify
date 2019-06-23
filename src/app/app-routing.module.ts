@@ -7,6 +7,7 @@ import {MapsPage} from './maps/maps.page';
 import {ProfilePage} from './profile/profile.page';
 import { ScoreboardPage } from './scoreboard/scoreboard.page';
 import {ChatbotPage} from './chatbot/chatbot.page';
+import { InvitePage } from './invite/invite.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'login', component: LoginPage},
   {path: 'scoreboard', component: ScoreboardPage },
   {path: 'chatbot', component: ChatbotPage, canActivate: [AuthGuardService]},
+  { path: 'invite', component: InvitePage, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({
